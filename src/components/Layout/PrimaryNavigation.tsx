@@ -63,7 +63,9 @@ const PrimaryNavigation: React.FC = () => {
         </Hidden>
         <Hidden smDown implementation="js">
           {PRIMARY_NAV_LINKS.map((link) => (
-            <ButtonLink href={link.url}>{link.name}</ButtonLink>
+            <ButtonLink href={link.url} key={link.url}>
+              {link.name}
+            </ButtonLink>
           ))}
         </Hidden>
       </nav>

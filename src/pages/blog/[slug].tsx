@@ -2,14 +2,24 @@ import { compose, map } from 'lodash/fp';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import React from 'react';
 
+import About from '@components/About';
 import { BlogPostFull } from '@components/BlogPost';
 import Layout from '@components/Layout';
 import SocialFollow from '@components/SocialFollow';
 import { getPostBySlug, getPosts } from '@lib/cms';
-import { Grid } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import { Post } from '@models/post';
 
+const useStyles = makeStyles(() => ({
+  sticky: {
+    position: 'sticky',
+    top: '-.3em',
+    zIndex: 10000,
+  },
+}));
+
 const BlogPostPage: React.FC<Post> = (post: Post) => {
+  const classes = useStyles();
   return (
     <>
       <Layout pageTitle={post.title} pageDescription={post.description} url={`blog/${post.slug}`}>
@@ -17,7 +27,10 @@ const BlogPostPage: React.FC<Post> = (post: Post) => {
           <BlogPostFull post={post} />
         </Grid>
         <Grid item xs={12} sm={3}>
-          <SocialFollow />
+          <div className={classes.sticky}>
+            <SocialFollow />
+            <About />
+          </div>
         </Grid>
       </Layout>
     </>
