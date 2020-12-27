@@ -1,0 +1,17 @@
+#!/bin/sh
+export PORT=${PORT:-3000}
+export COMMAND=${@:-"yarn dev"}
+EXISTING_CONTAINER_ID=""
+if [ -n `docker-compose ps -q runner` ]; then
+    EXISTING_CONTAINER_ID=`docker-compose ps -q runner`;
+elif [ -n `docker ps -q --no-trunc | grep $(docker-compose ps -q runner)` ]; then
+    EXISTING_CONTAINER_ID=`docker ps -q --no-trunc | grep $(docker-compose ps -q runner)`;
+fi
+
+
+if [ -z $EXISTING_CONTAINER_ID ]; then
+  COMMAND=${@:-"yarn dev"} docker-compose run --service-ports --rm runner
+else
+  echo "Existing container ${EXISTING_CONTAINER_ID}"
+  docker exec -it ${EXISTING_CONTAINER_ID} ${COMMAND}
+fi

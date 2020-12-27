@@ -1,0 +1,27 @@
+.inner {
+  text-align: center;
+}
+
+.bio {
+  text-align: justify;
+}
+
+.button {
+  display: inline-block;
+  margin: 8px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.button:hover {
+  color: #2ea44f;
+}
+
+.avatar {
+  width: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+}
