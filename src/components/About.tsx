@@ -23,7 +23,7 @@ const About: React.FC = () => {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar} variant="rounded">
-            <Image src="/anurag.jpg" />
+            <Image src="/anurag.jpg" alt="Anurag Ashok" />
           </Avatar>
         }
         title="Anurag Ashok"
