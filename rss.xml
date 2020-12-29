@@ -23,29 +23,5 @@
     <pubDate>Mon, 30 Nov 2020 16:00:00 GMT</pubDate>
   </item>
 
-  <item>
-    <guid>https://theoverengineered.blog/blog/static-sites-are-great</guid>
-    <title>Static sites are great</title>
-    <link>https://theoverengineered.blog/blog/static-sites-are-great</link>
-    <description>Worry less about security, caching, and talking to the server. Static sites are the new thing.</description>
-    <pubDate>Mon, 15 May 2017 22:00:00 GMT</pubDate>
-  </item>
-
-  <item>
-    <guid>https://theoverengineered.blog/blog/automate-with-webhooks</guid>
-    <title>Automate with webhooks</title>
-    <link>https://theoverengineered.blog/blog/automate-with-webhooks</link>
-    <description>Webhooks notify you, another person or system when resources have changed by calling a given HTTP endpoint.</description>
-    <pubDate>Thu, 11 May 2017 22:00:00 GMT</pubDate>
-  </item>
-
-  <item>
-    <guid>https://theoverengineered.blog/blog/hello-world</guid>
-    <title>Hello world</title>
-    <link>https://theoverengineered.blog/blog/hello-world</link>
-    <description>Your very first content with Contentful, pulled in JSON format using the Content Delivery API.</description>
-    <pubDate>Sun, 14 May 2017 22:00:00 GMT</pubDate>
-  </item>
-
     </channel>
   </rss>
