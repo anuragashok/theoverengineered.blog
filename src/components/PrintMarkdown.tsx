@@ -4,11 +4,29 @@ import parse from 'remark-parse';
 import remark2react from 'remark-react';
 import unified from 'unified';
 
+import { createStyles, makeStyles, Typography } from '@material-ui/core';
+
 import Image from './Image';
 import { Link } from './Link';
 
 type Props = {
   markdown: string;
+};
+const captionStyle = makeStyles((theme) =>
+  createStyles({
+    root: {
+      fontStyle: 'italic',
+      marginTop: theme.spacing(2),
+    },
+  })
+);
+const Caption: React.FC = ({ children }) => {
+  const classes = captionStyle();
+  return (
+    <Typography variant="subtitle2" className={classes.root}>
+      {children}
+    </Typography>
+  );
 };
 
 const PrintMarkdown: React.FC<Props> = ({ markdown }) => {
@@ -26,6 +44,7 @@ const PrintMarkdown: React.FC<Props> = ({ markdown }) => {
       remarkReactComponents: {
         a: Link,
         img: Image,
+        h6: Caption,
       },
     })
     .processSync(markdown).result;
