@@ -1,4 +1,3 @@
-import fs from 'fs';
 import { GetStaticProps } from 'next';
 import DefaultErrorPage from 'next/error';
 import Head from 'next/head';
@@ -24,12 +23,10 @@ const Dummy: React.FC = () => (
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await getPosts();
-  const rss = generateRss(posts);
-  fs.writeFileSync('./public/rss.xml', rss);
+  generateRss(posts);
 
   const pages = await getAllContent();
-  const sitemap = await generateSitemap(pages);
-  fs.writeFileSync('./public/sitemap.xml', sitemap);
+  generateSitemap(pages);
 
   return {
     props: {},

@@ -108,3 +108,7 @@ out/
 
 # local config files
 .env.local
+
+#ignore files generated during build
+public/rss.xml
+public/sitemap.xml

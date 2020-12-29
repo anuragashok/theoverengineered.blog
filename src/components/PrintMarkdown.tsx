@@ -1,4 +1,5 @@
-import highlight from 'remark-highlight.js';
+import Prism from 'prismjs';
+import React from 'react';
 import parse from 'remark-parse';
 import remark2react from 'remark-react';
 import unified from 'unified';
@@ -11,10 +12,17 @@ type Props = {
 };
 
 const PrintMarkdown: React.FC<Props> = ({ markdown }) => {
+  // eslint-disable-next-line global-require
+  require('prismjs/components/prism-jsx.min');
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      Prism.highlightAll();
+    }
+  }, []);
   const content = unified()
     .use(parse)
-    .use(highlight)
     .use(remark2react, {
+      sanitize: false,
       remarkReactComponents: {
         a: Link,
         img: Image,

@@ -1,9 +1,9 @@
+import fs from 'fs';
 import { compose, map } from 'lodash/fp';
-import { SitemapStream, streamToPromise } from 'sitemap';
-import { Readable } from 'stream';
 
 import { getFullUrl } from './siteinfo';
 
+const SITEMAP_PATH = './public/sitemap.xml';
 type SiteMapEntry = { url: string; changefreq: string; priority: number };
 const mapToSitemapEntry = (page: Content): SiteMapEntry => {
   return {
@@ -16,8 +16,20 @@ type Content = {
   slug: string;
   type: string;
 };
-export default (pages: Content[]): Promise<string> => {
-  const stream = new SitemapStream({ hostname: getFullUrl('') });
+export default (pages: Content[]): void => {
   const links = compose(map(mapToSitemapEntry))(pages);
-  return streamToPromise(Readable.from(links).pipe(stream)).then((data) => data.toString());
+
+  if (fs.existsSync(SITEMAP_PATH)) {
+    fs.unlinkSync(SITEMAP_PATH);
+  }
+  const stream = fs.createWriteStream(SITEMAP_PATH, { flags: 'a' });
+  links.forEach((item) => {
+    stream.write(`
+      <url>
+        <loc>${item.url}</loc>
+        <changefreq>${item.changefreq}</changefreq>
+        <priority>${item.priority}</priority>
+      </url>`);
+  });
+  stream.end();
 };

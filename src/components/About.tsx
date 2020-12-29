@@ -32,7 +32,7 @@ const About: React.FC = () => {
       <CardContent>
         <Typography variant="body2" color="textPrimary" component="p">
           I am curious person who enjoys building software. My primary focus has been Java-based microservices. I am
-          also expirimenting with the javascript ecosystem for web. I love all things code, and am very passionate about
+          also experimenting with the javascript ecosystem for web. I love all things code, and am very passionate about
           &quot;everything as code&quot;.
           <Link href="/about">Read More</Link>
         </Typography>

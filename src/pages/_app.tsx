@@ -1,4 +1,4 @@
-import '../hljs.css';
+import 'prismjs/themes/prism-okaidia.css';
 
 import { AppProps } from 'next/app';
 /* eslint-disable react/jsx-props-no-spreading */
