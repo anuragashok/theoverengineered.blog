@@ -8,18 +8,18 @@
       <atom:link href="https://theoverengineered.blog/rss.xml" rel="self" type="application/rss+xml"/>
       
   <item>
-    <guid>https://theoverengineered.blog/blog/initial-post</guid>
-    <title>Initial Post</title>
-    <link>https://theoverengineered.blog/blog/initial-post</link>
-    <description>Jamstack is very popular these days. I decided to build this site using Jamstack practices. This post summarizes the various layers of the Jamstack eco-system used on this site.</description>
-    <pubDate>Mon, 30 Nov 2020 16:00:00 GMT</pubDate>
-  </item>
-
-  <item>
     <guid>https://theoverengineered.blog/blog/generate-rss-and-sitemap-for-nextjs-jamstack-site</guid>
     <title>Generate RSS and Sitemap for Next.js JAMstack site</title>
     <link>https://theoverengineered.blog/blog/generate-rss-and-sitemap-for-nextjs-jamstack-site</link>
     <description>RSS and sitemap are essential for blogs today. RSS Feeds let users subscribe to your content and improves user engagement. On the other hand, a sitemap is for search engines to find and index your content. Let's see how to generate these in a Next.js JAMStack site.</description>
+    <pubDate>Mon, 30 Nov 2020 16:00:00 GMT</pubDate>
+  </item>
+
+  <item>
+    <guid>https://theoverengineered.blog/blog/initial-post</guid>
+    <title>Initial Post</title>
+    <link>https://theoverengineered.blog/blog/initial-post</link>
+    <description>Jamstack is very popular these days. I decided to build this site using Jamstack practices. This post summarizes the various layers of the Jamstack eco-system used on this site.</description>
     <pubDate>Mon, 30 Nov 2020 16:00:00 GMT</pubDate>
   </item>
 
