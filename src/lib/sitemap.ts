@@ -7,7 +7,7 @@ const SITEMAP_PATH = './public/sitemap.xml';
 type SiteMapEntry = { url: string; changefreq: string; priority: number };
 const mapToSitemapEntry = (page: Content): SiteMapEntry => {
   return {
-    url: page.type === 'blogPost' ? getFullUrl(`blog/${page.slug}`) : page.slug,
+    url: getFullUrl(page.type === 'blogPost' ? `blog/${page.slug}` : page.slug),
     changefreq: page.type === 'blogPost' ? 'weekly' : 'daily',
     priority: page.type === 'blogPost' ? 1.0 : 0.5,
   };
@@ -18,6 +18,7 @@ type Content = {
 };
 export default (pages: Content[]): void => {
   const links = compose(map(mapToSitemapEntry))(pages);
+  links.push({ url: getFullUrl(''), changefreq: 'daily', priority: 1.0 });
 
   if (fs.existsSync(SITEMAP_PATH)) {
     fs.unlinkSync(SITEMAP_PATH);
