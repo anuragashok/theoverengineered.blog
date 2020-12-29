@@ -13,7 +13,7 @@ type Props = {
   post: Post;
 };
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     teaserpost: {
       marginBlockEnd: '1em',
@@ -34,8 +34,11 @@ const BlogPostTeaser: React.FC<Props> = ({ post }) => {
           <Link href={`blog/${slug}`}>{title}</Link>
         </Typography>
         <Typography variant="overline">{formattedDate}</Typography>
-        <Typography variant="body1" align="justify">
+        <Typography variant="body1" align="justify" gutterBottom>
           <PrintMarkdown markdown={description} />
+        </Typography>
+        <Typography variant="body2" align="justify">
+          <Link href={`blog/${slug}`}>Read More</Link>
         </Typography>
       </CardContent>
     </Card>
