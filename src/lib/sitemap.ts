@@ -23,6 +23,8 @@ export default (pages: Content[]): void => {
     fs.unlinkSync(SITEMAP_PATH);
   }
   const stream = fs.createWriteStream(SITEMAP_PATH, { flags: 'a' });
+  stream.write(`<?xml version="1.0" encoding="UTF-8"?>
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`);
   links.forEach((item) => {
     stream.write(`
       <url>
@@ -31,5 +33,7 @@ export default (pages: Content[]): void => {
         <priority>${item.priority}</priority>
       </url>`);
   });
+  stream.write('\n');
+  stream.write('</urlset>');
   stream.end();
 };
