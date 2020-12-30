@@ -1,6 +1,5 @@
 import { createClient, Entry } from 'contentful';
-import compose from 'lodash/fp/compose';
-import map from 'lodash/fp/map';
+import { compose, map } from 'lodash/fp';
 
 import { IBlogPostFields, IPageFields } from '@models/contentful';
 import { Post } from '@models/post';
