@@ -2,10 +2,10 @@ version: '3.7'
 
 services:
   runner: 
-    image: node
+    image: node:lts
     ports: 
       - "$PORT:3000"
-      - "9229:9229"
+      - "$DEBUGPORT:9229"
     volumes:
     - .:/app:cached
     - yarn-cache-volume:/usr/local/share/.cache/yarn/v6:cached

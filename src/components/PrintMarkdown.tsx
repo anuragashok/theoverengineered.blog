@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import Prism from 'prismjs';
 import React from 'react';
 import parse from 'remark-parse';
@@ -30,8 +31,9 @@ const Caption: React.FC = ({ children }) => {
 };
 
 const PrintMarkdown: React.FC<Props> = ({ markdown }) => {
-  // eslint-disable-next-line global-require
   require('prismjs/components/prism-jsx.min');
+  require('prismjs/components/prism-yaml.min');
+  require('prismjs/components/prism-bash.min');
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       Prism.highlightAll();

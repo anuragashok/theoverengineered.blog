@@ -1,12 +1,6 @@
 import React from 'react';
 
-import theme from '@lib/theme';
-import {
-    Button, Card, CardActions, CardContent, CardHeader, createStyles, makeStyles, TextField
-} from '@material-ui/core';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import RssFeedIcon from '@material-ui/icons/RssFeed';
+import { Button, Card, CardContent, CardHeader, createStyles, makeStyles, TextField } from '@material-ui/core';
 
 const useStyles = makeStyles(() =>
   createStyles({
