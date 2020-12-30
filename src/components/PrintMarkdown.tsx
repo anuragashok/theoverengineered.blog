@@ -31,9 +31,6 @@ const Caption: React.FC = ({ children }) => {
 };
 
 const PrintMarkdown: React.FC<Props> = ({ markdown }) => {
-  require('prismjs/components/prism-jsx.min');
-  require('prismjs/components/prism-yaml.min');
-  require('prismjs/components/prism-bash.min');
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       Prism.highlightAll();
