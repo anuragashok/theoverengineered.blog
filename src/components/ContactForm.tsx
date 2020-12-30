@@ -40,7 +40,11 @@ const ContactForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {};
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
+    // TODO
+    return true;
+  };
 
   return (
     <Card className={classes.root}>
