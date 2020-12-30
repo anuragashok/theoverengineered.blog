@@ -7,8 +7,8 @@ import unified from 'unified';
 
 import { createStyles, makeStyles, Typography } from '@material-ui/core';
 
-import Image from './Image';
 import { Link } from './Link';
+import Media from './Media';
 
 type Props = {
   markdown: string;
@@ -45,7 +45,7 @@ const PrintMarkdown: React.FC<Props> = ({ markdown }) => {
       sanitize: false,
       remarkReactComponents: {
         a: Link,
-        img: Image,
+        img: Media,
         h6: Caption,
       },
     })

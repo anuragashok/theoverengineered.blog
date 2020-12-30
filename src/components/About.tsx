@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Avatar, Card, CardContent, CardHeader, createStyles, makeStyles, Typography } from '@material-ui/core';
 
-import Image from './Image';
 import { Link } from './Link';
+import Media from './Media';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -23,7 +23,7 @@ const About: React.FC = () => {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar} variant="rounded">
-            <Image src="/anurag.jpg" alt="Anurag Ashok" />
+            <Media src="/anurag.jpg" alt="Anurag Ashok" />
           </Avatar>
         }
         title="Anurag Ashok"
