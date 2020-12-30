@@ -4,9 +4,93 @@
       <link>https://theoverengineered.blog/</link>
       <description>the_Over_Engineered_Blog</description>
       <language>en</language>
-      <lastBuildDate>Mon, 30 Nov 2020 16:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Mon, 14 Dec 2020 16:00:00 GMT</lastBuildDate>
       <atom:link href="https://theoverengineered.blog/rss.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://theoverengineered.blog/blog/use-docker-for-local-development</guid>
+    <title>Use Docker for local development</title>
+    <link>https://theoverengineered.blog/blog/use-docker-for-local-development</link>
+    <description>Docker / Containers have become the de facto standard to build and deploy apps. The isolation, portability and easy scaling capabilities of containers are what makes them the popular choice for app deployments.
+
+However, containers can also be leveraged not only for app deployments but also for local development. They can solve a lot of developer problems. Using Docker containers during development can have the following benefits.
+
+- runs on my machine = runs anywhere
+- no cumbersome setup / version incompatibilties
+- development environment is closer to production
+- easy onboarding
+
+Let's walkthrough how I use Docker for development of this blog. 
+
+## Base Image
+TheOverEngineeredBlog is built on next.js which needs node. Also the package manager of choice is yarn. The official node image on dockerhub is [here](https://hub.docker.com/_/node "Official Node DockerHub Image"). It includes yarn too. This blog uses `node:lts` image to get the latest lts version of node.
+
+## Docker Compose
+I have created a docker-compose.yml file at root of the project to define all the configuration for the container and add more container(s) if needed later.
+
+```yaml
+version: '3.7'
+
+services:
+  runner: 
+    image: node:lts
+    ports: 
+      - "$PORT:3000"
+      - "$DEBUGPORT:9229"
+    volumes:
+    - .:/app:cached
+    - yarn-cache-volume:/usr/local/share/.cache/yarn/v6:cached
+    working_dir: /app
+    command: "$COMMAND"
+
+volumes:
+  yarn-cache-volume:
+```
+The compose file defines a service named `runner` using the base image "node:lts".
+
+The `ports` section instructs Docker to expose ports 3000 and 9229 at $PORT and $DEBUGPORT on the host. PORT and DEBUGPORT are environment variables to be used to set desired ports on the host.
+
+The `volumes` section mounts the root directory of the project to `/app` inside the container. Also it defines a named persistent volume for yarn cache. This volume will be internally managed by docker and persist accross container stop/starts. This volume is created to persist yarn cache and reduce yarn run time next time the container starts.
+
+`working_dir` set the current directory to `./app` to avoid changing directory everytime container is started.
+
+`command` is set to a environment variable $COMMAND. It can be provided when invoking docker-compose.
+
+## RUN script
+
+I like to have a `run` script to spawn the container using docker-compose , so that I don't need to type in the same commands over and over. The script looks like this.
+
+```bash
+#!/bin/sh
+export PORT=${PORT:-3000}
+export DEBUGPORT=${DEBUGPORT:-9229}
+export COMMAND=${@:-"yarn dev"}
+EXISTING_CONTAINER_ID=""
+if [ -n `docker-compose ps -q runner` ]; then
+    EXISTING_CONTAINER_ID=`docker-compose ps -q runner`;
+elif [ -n `docker ps -q --no-trunc | grep $(docker-compose ps -q runner)` ]; then
+    EXISTING_CONTAINER_ID=`docker ps -q --no-trunc | grep $(docker-compose ps -q runner)`;
+fi
+
+if [ -z $EXISTING_CONTAINER_ID ]; then
+  COMMAND=${@:-"yarn dev"} docker-compose run --service-ports --rm runner
+else
+  echo "Existing container ${EXISTING_CONTAINER_ID}"
+  docker exec -it ${EXISTING_CONTAINER_ID} ${COMMAND}
+fi
+```
+
+The script can be used like this. Sections in `[]` are optional and have defaults set.
+
+```bash
+[PORT=<desired port on host> DEBUGPORT=<desired debug port on host>] ./run [<command to run>]
+
+DEFAULTS PORT=3000 DEBUGPORT=9229 COMMAND="yarn dev"
+```
+</description>
+    <pubDate>Mon, 14 Dec 2020 16:00:00 GMT</pubDate>
+  </item>
+
   <item>
     <guid>https://theoverengineered.blog/blog/generate-rss-and-sitemap-for-nextjs-jamstack-site</guid>
     <title>Generate RSS and Sitemap for Next.js JAMstack site</title>
