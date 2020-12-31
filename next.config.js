@@ -9,7 +9,7 @@ module.exports = withPlugins(
   {
     experimental: {
       optimizeFonts: true,
-      productionBrowserSourceMaps: true,
+      optimizeImages: true,
     },
   }
 );
