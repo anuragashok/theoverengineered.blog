@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import React, { ReactElement } from 'react';
 
@@ -8,10 +9,7 @@ export default class MyDocument extends Document {
   render(): ReactElement {
     return (
       <Html lang="en">
-        <Head>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />

@@ -1,3 +1,4 @@
+import '../font.css';
 import 'prismjs/themes/prism-okaidia.css';
 
 import { AppProps } from 'next/app';
