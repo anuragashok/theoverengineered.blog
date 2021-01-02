@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import React from 'react';
 
@@ -5,10 +6,10 @@ import { SITE_TITLE } from '@lib/siteinfo';
 import { Container, createStyles, makeStyles } from '@material-ui/core';
 
 import Body from './Body';
-import Footer from './Footer';
 import Header from './Header';
 import Meta from './Meta';
 
+const Footer = dynamic(import('./Footer'));
 type Props = {
   pageTitle: string;
   pageDescription: string;
