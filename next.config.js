@@ -3,6 +3,8 @@ const withSvgr = require('next-svgr');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
+const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+
 module.exports = withPlugins(
   [
     withSvgr,
@@ -11,8 +13,11 @@ module.exports = withPlugins(
   ],
   {
     experimental: {
-      optimizeFonts: true,
       optimizeImages: true,
+    },
+    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+      config.plugins.push(new DuplicatePackageCheckerPlugin());
+      return config;
     },
   }
 );
