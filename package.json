@@ -8,7 +8,8 @@
     "type-check": "tsc",
     "format": "",
     "codecheck": "eslint --quiet --fix src/**/*.{ts,tsx} && prettier --write src/**/*.{ts,tsx}",
-    "contentful-typescript-codegen": "contentful-typescript-codegen --output src/models/contentful.d.ts"
+    "contentful-typescript-codegen": "contentful-typescript-codegen --output src/models/contentful.d.ts",
+    "analyze": "cross-env ANALYZE=true yarn build"
   },
   "dependencies": {
     "@contentful/rich-text-types": "^14.1.2",
@@ -25,18 +26,16 @@
     "next-svgr": "^0.0.2",
     "prismjs": "^1.22.0",
     "react": "17",
-    "react-dom": "17",
     "react-gtm-module": "^2.0.11",
     "react-web-share": "^1.0.13",
     "remark": "^13.0.0",
-    "remark-highlight.js": "^6.0.0",
-    "remark-html": "^13.0.1",
     "remark-parse": "^9.0.0",
     "remark-react": "^8.0.0",
     "swr": "^0.3.11",
     "unified": "^9.2.0"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^10.0.4",
     "@types/lodash": "^4.14.165",
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
@@ -45,6 +44,7 @@
     "babel-eslint": "^10.1.0",
     "contentful-management": "^7.0.0",
     "contentful-typescript-codegen": "^3.2.1",
+    "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "eslint-config-airbnb": "^18.2.0",

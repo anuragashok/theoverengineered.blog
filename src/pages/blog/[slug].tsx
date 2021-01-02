@@ -7,7 +7,8 @@ import { BlogPostFull } from '@components/BlogPost';
 import Layout from '@components/Layout';
 import SocialFollow from '@components/SocialFollow';
 import { getPostBySlug, getPosts } from '@lib/cms';
-import { Grid, makeStyles } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 import { Post } from '@models/post';
 
 const useStyles = makeStyles(() => ({
