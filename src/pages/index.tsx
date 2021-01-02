@@ -1,12 +1,13 @@
 import { GetStaticProps } from 'next';
+import renderToString from 'next-mdx-remote/render-to-string';
 import React from 'react';
 
 import About from '@components/About';
 import { BlogPostTeaser } from '@components/BlogPost';
-import ContactForm from '@components/ContactForm';
 import Layout from '@components/Layout';
 import SocialFollow from '@components/SocialFollow';
 import { getPosts } from '@lib/cms';
+import { components, mdxOptions } from '@lib/markdown';
 import { Grid, makeStyles } from '@material-ui/core';
 import { Post } from '@models/post';
 
@@ -42,8 +43,21 @@ const Home: React.FC<Props> = ({ posts }) => {
     </Layout>
   );
 };
+
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    await callback(array[index], index, array);
+  }
+}
+
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await getPosts();
+  await asyncForEach(posts, async (p) => {
+    // eslint-disable-next-line no-param-reassign
+    p.description = await renderToString(p.description, { components, mdxOptions });
+  });
+
   return {
     props: {
       posts,

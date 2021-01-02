@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import renderToString from 'next-mdx-remote/render-to-string';
 import React from 'react';
 
 import GithubProfile from '@components/GithubProfile';
@@ -6,6 +7,7 @@ import Layout from '@components/Layout';
 import LinkedinProfile from '@components/LinkedInProfile';
 import Page from '@components/Page';
 import { getPage } from '@lib/cms';
+import { components, mdxOptions } from '@lib/markdown';
 import { Card, CardContent, Grid, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
@@ -56,6 +58,7 @@ const About: React.FC<Props> = ({ title, body, slug }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const page = await getPage('4OFtfryXjAW9lKo3FTuyWG');
+  page.body = await renderToString(page.body, { components, mdxOptions });
   return {
     props: {
       ...page,

@@ -11,7 +11,7 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link
-            rel="preconnect"
+            rel="preload"
             href="https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fCRc4AMP6lbBP.woff2"
             as="font"
             crossOrigin="anonymous"

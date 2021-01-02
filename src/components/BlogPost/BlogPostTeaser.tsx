@@ -1,9 +1,9 @@
-/* eslint-disable react/no-danger */
-
 import dateformat from 'dateformat';
+import hydrate from 'next-mdx-remote/hydrate';
+import React from 'react';
 
 import { Link } from '@components/Link';
-import PrintMarkdown from '@components/PrintMarkdown';
+import { components } from '@lib/markdown';
 import { createStyles, makeStyles, Typography } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -26,7 +26,7 @@ const BlogPostTeaser: React.FC<Props> = ({ post }) => {
   const classes = useStyles();
   const { title, slug, description, publishDate } = post;
   const formattedDate = publishDate && dateformat(new Date(publishDate), 'longDate');
-
+  const content = hydrate(description, { components });
   return (
     <Card className={classes.teaserpost} elevation={0}>
       <CardContent>
@@ -35,7 +35,7 @@ const BlogPostTeaser: React.FC<Props> = ({ post }) => {
         </Typography>
         <Typography variant="overline">{formattedDate}</Typography>
         <Typography variant="body1" align="justify" gutterBottom>
-          <PrintMarkdown markdown={description} />
+          {content}
         </Typography>
         <Typography variant="body2" align="justify">
           <Link href={`blog/${slug}`}>Read More</Link>

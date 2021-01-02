@@ -1,12 +1,15 @@
 import { compose, map } from 'lodash/fp';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import renderToString from 'next-mdx-remote/render-to-string';
 import React from 'react';
+import rehypeHiglight from 'rehype-highlight';
 
 import About from '@components/About';
 import { BlogPostFull } from '@components/BlogPost';
 import Layout from '@components/Layout';
 import SocialFollow from '@components/SocialFollow';
 import { getPostBySlug, getPosts } from '@lib/cms';
+import { components } from '@lib/markdown';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { Post } from '@models/post';
@@ -47,6 +50,8 @@ const mapParams = ({ slug }) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params;
   const post = await getPostBySlug(slug as string);
+  post.body = await renderToString(post.body, { components, mdxOptions: { rehypePlugins: [rehypeHiglight] } });
+
   return { props: post };
 };
 

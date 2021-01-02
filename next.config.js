@@ -12,9 +12,6 @@ module.exports = withPlugins(
     // your other plugins here
   ],
   {
-    experimental: {
-      optimizeImages: true,
-    },
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
       config.plugins.push(new DuplicatePackageCheckerPlugin());
       return config;

@@ -1,5 +1,5 @@
 import '../font.css';
-import 'prismjs/themes/prism-okaidia.css';
+import '../hljs.css';
 
 import { AppProps } from 'next/app';
 /* eslint-disable react/jsx-props-no-spreading */
