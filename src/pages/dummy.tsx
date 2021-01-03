@@ -1,9 +1,12 @@
 import { GetStaticProps } from 'next';
+import renderToString from 'next-mdx-remote/render-to-string';
 import DefaultErrorPage from 'next/error';
 import Head from 'next/head';
 import React from 'react';
 
+import asyncForEach from '@lib/asyncForEach';
 import { getAllContent, getPosts } from '@lib/cms';
+import { components, mdxOptions } from '@lib/markdown';
 import generateRss from '@lib/rss';
 import generateSitemap from '@lib/sitemap';
 
@@ -27,9 +30,17 @@ export const getStaticProps: GetStaticProps = async () => {
   await asyncForEach(posts, async (p) => {
     // eslint-disable-next-line no-param-reassign
     p.description = await renderToString(p.description, { components, mdxOptions });
+    // eslint-disable-next-line no-param-reassign
+    p.body = await renderToString(p.body, { components, mdxOptions });
   });
 
   const pages = await getAllContent();
+  await asyncForEach(posts, async (p) => {
+    // eslint-disable-next-line no-param-reassign
+    p.description = await renderToString(p.description, { components, mdxOptions });
+    // eslint-disable-next-line no-param-reassign
+    p.body = await renderToString(p.body, { components, mdxOptions });
+  });
   generateSitemap(pages);
 
   return {
