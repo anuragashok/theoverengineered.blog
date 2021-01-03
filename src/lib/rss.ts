@@ -1,4 +1,5 @@
 import fs from 'fs';
+import xmlEscape from 'xml-escape';
 
 import { Post } from '@models/post';
 
@@ -9,8 +10,7 @@ const generateRssItem = (post: Post): string => `
     <guid>${getFullUrl(`blog/${post.slug}`)}</guid>
     <title>${post.title}</title>
     <link>${getFullUrl(`blog/${post.slug}`)}</link>
-    <description>${post.description}</description>
-    <content>${post.body}
+    <description>${xmlEscape(post.body)}</description>
     <pubDate>${new Date(post.publishDate).toUTCString()}</pubDate>
   </item>
 `;
