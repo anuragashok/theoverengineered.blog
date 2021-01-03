@@ -27,20 +27,8 @@ const Dummy: React.FC = () => (
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await getPosts();
   generateRss(posts);
-  await asyncForEach(posts, async (p) => {
-    // eslint-disable-next-line no-param-reassign
-    p.description = await renderToString(p.description, { components, mdxOptions });
-    // eslint-disable-next-line no-param-reassign
-    p.body = await renderToString(p.body, { components, mdxOptions });
-  });
 
   const pages = await getAllContent();
-  await asyncForEach(posts, async (p) => {
-    // eslint-disable-next-line no-param-reassign
-    p.description = await renderToString(p.description, { components, mdxOptions });
-    // eslint-disable-next-line no-param-reassign
-    p.body = await renderToString(p.body, { components, mdxOptions });
-  });
   generateSitemap(pages);
 
   return {

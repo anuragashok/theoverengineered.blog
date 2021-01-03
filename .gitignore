@@ -112,3 +112,4 @@ out/
 #ignore files generated during build
 public/rss.xml
 public/sitemap.xml
+public/cross-publish-rss.xml
