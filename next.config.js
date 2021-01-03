@@ -13,7 +13,6 @@ module.exports = withPlugins(
   ],
   {
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-      config.plugins.push(new DuplicatePackageCheckerPlugin());
       return config;
     },
   }
