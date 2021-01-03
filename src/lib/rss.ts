@@ -10,6 +10,7 @@ const generateRssItem = (post: Post): string => `
     <title>${post.title}</title>
     <link>${getFullUrl(`blog/${post.slug}`)}</link>
     <description>${post.description}</description>
+    <content>${post.body}
     <pubDate>${new Date(post.publishDate).toUTCString()}</pubDate>
   </item>
 `;
