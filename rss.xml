@@ -11,8 +11,7 @@
     <guid>https://theoverengineered.blog/blog/use-docker-for-local-development</guid>
     <title>Use Docker for local development</title>
     <link>https://theoverengineered.blog/blog/use-docker-for-local-development</link>
-    <description>Containers are not only for application deployments. They offer many advantages for local development too. Find out how theOverEngineeredBlog uses Docker for local development.</description>
-    <content>Docker/Containers have become the de facto standard for building and deploying applications. The isolation, portability and easy scaling capabilities of containers make them the popular choice for app deployments.
+    <description>Docker/Containers have become the de facto standard for building and deploying applications. The isolation, portability and easy scaling capabilities of containers make them the popular choice for app deployments.
 
 However, containers are not only for application deployments but can also be for local development. They can solve many developer issues. The use of Docker containers during development can have the following advantages.
 - runs on my machine = runs anywhere
@@ -20,7 +19,7 @@ However, containers are not only for application deployments but can also be for
 - The development environment is closer to production
 - easy onboarding of new developers
 
-Let's see how I use Docker for the development of this blog. 
+Let&apos;s see how I use Docker for the development of this blog. 
 
 ## Base Image
 TheOverEngineeredBlog is built on next.js which needs node. Also, the package manager of choice is yarn. The official node image on docker hub is [here][1]. It includes yarn too. This blog uses `node:lts` image to get the latest lts version of node.
@@ -30,25 +29,25 @@ I created a docker-compose.yml file at the root of the project to define the ent
 
 ###### docker-compose.yml [View on GitHub][2]
 ```yaml
-version: '3.7'
+version: &apos;3.7&apos;
 
 services:
   runner: 
     image: node:lts
     ports: 
-      - "$PORT:3000"
-      - "$DEBUGPORT:9229"
+      - &quot;$PORT:3000&quot;
+      - &quot;$DEBUGPORT:9229&quot;
     volumes:
     - .:/app:cached
     - yarn-cache-volume:/usr/local/share/.cache/yarn/v6:cached
     working_dir: /app
-    command: "$COMMAND"
+    command: &quot;$COMMAND&quot;
 
 volumes:
   yarn-cache-volume:
 ```
 
-The compose file defines a service named `runner` using the base image "node:lts".
+The compose file defines a service named `runner` using the base image &quot;node:lts&quot;.
 
 The `ports` section instructs Docker to expose ports 3000 and 9229 at $PORT and $DEBUGPORT on the host. PORT and DEBUGPORT are environment variables to configure the desired ports on the host.
 
@@ -67,8 +66,8 @@ I like to have a `run` script to spawn the container using docker-compose to avo
 #!/bin/sh
 export PORT=${PORT:-3000}
 export DEBUGPORT=${DEBUGPORT:-9229}
-export COMMAND=${@:-"yarn dev"}
-EXISTING_CONTAINER_ID=""
+export COMMAND=${@:-&quot;yarn dev&quot;}
+EXISTING_CONTAINER_ID=&quot;&quot;
 if [ -n `docker-compose ps -q runner` ]; then
     EXISTING_CONTAINER_ID=`docker-compose ps -q runner`;
 elif [ -n `docker ps -q --no-trunc | grep $(docker-compose ps -q runner)` ]; then
@@ -76,9 +75,9 @@ elif [ -n `docker ps -q --no-trunc | grep $(docker-compose ps -q runner)` ]; the
 fi
 
 if [ -z $EXISTING_CONTAINER_ID ]; then
-  COMMAND=${@:-"yarn dev"} docker-compose run --service-ports --rm runner
+  COMMAND=${@:-&quot;yarn dev&quot;} docker-compose run --service-ports --rm runner
 else
-  echo "Existing container ${EXISTING_CONTAINER_ID}"
+  echo &quot;Existing container ${EXISTING_CONTAINER_ID}&quot;
   docker exec -it ${EXISTING_CONTAINER_ID} ${COMMAND}
 fi
 ```
@@ -86,9 +85,9 @@ fi
 The script is executed like this.
 
 ```bash
-[PORT=<desired port on host> DEBUGPORT=<desired debug port on host>] ./run [<command>]
+[PORT=&lt;desired port on host&gt; DEBUGPORT=&lt;desired debug port on host&gt;] ./run [&lt;command&gt;]
 
-DEFAULTS PORT=3000 DEBUGPORT=9229 COMMAND="yarn dev"
+DEFAULTS PORT=3000 DEBUGPORT=9229 COMMAND=&quot;yarn dev&quot;
 ```
 
 Sections in `[]` are optional and have defaults set.
@@ -98,21 +97,21 @@ To start the application, I need to write `./run` on the shell. It starts the co
 ![Sample Output][4]
 
 Any command can be executed inside the container by prefixing it with `./run`
-E.g. To add a package, run './run yarn add some-package-name'
+E.g. To add a package, run &apos;./run yarn add some-package-name&apos;
 
-You could also do `./run bash` to get a bash shell attached to the container. This bash shell can be used to execute commands inside the container without the prefix './run'
+You could also do `./run bash` to get a bash shell attached to the container. This bash shell can be used to execute commands inside the container without the prefix &apos;./run&apos;
 
 The script also checks if a container is already running for the application and reuses the container to execute the command. Credits to [this answer on ServerFault][5] 
 
 We can also write a similar script for windows machines using cmd/PowerShell.
 
-This setup has helped me enormously. I don't have to worry about installing different versions of node/java/python etc. Besides, now the only dependency for local development is, Docker!
+This setup has helped me enormously. I don&apos;t have to worry about installing different versions of node/java/python etc. Besides, now the only dependency for local development is, Docker!
 
-[1]: https://hub.docker.com/_/node "Official Node DockerHub Image"
-[2]: https://github.com/anuragashok/theoverengineered.blog/blob/d784e3e072e19ae753cbe3fd39c64de86388e851/docker-compose.yml "View on Github"
-[3]: https://github.com/anuragashok/theoverengineered.blog/blob/d784e3e072e19ae753cbe3fd39c64de86388e851/run "View on GitHub"
+[1]: https://hub.docker.com/_/node &quot;Official Node DockerHub Image&quot;
+[2]: https://github.com/anuragashok/theoverengineered.blog/blob/d784e3e072e19ae753cbe3fd39c64de86388e851/docker-compose.yml &quot;View on Github&quot;
+[3]: https://github.com/anuragashok/theoverengineered.blog/blob/d784e3e072e19ae753cbe3fd39c64de86388e851/run &quot;View on GitHub&quot;
 [4]: /docker-for-local-min.mp4
-[5]: https://serverfault.com/a/935674/130937 "Check if container running"
+[5]: https://serverfault.com/a/935674/130937 &quot;Check if container running&quot;</description>
     <pubDate>Mon, 14 Dec 2020 16:00:00 GMT</pubDate>
   </item>
 
@@ -120,8 +119,7 @@ This setup has helped me enormously. I don't have to worry about installing diff
     <guid>https://theoverengineered.blog/blog/generate-rss-and-sitemap-for-nextjs-jamstack-site</guid>
     <title>Generate RSS and Sitemap for Next.js JAMstack site</title>
     <link>https://theoverengineered.blog/blog/generate-rss-and-sitemap-for-nextjs-jamstack-site</link>
-    <description>RSS and sitemap are essential for blogs today. RSS Feeds let users subscribe to your content and improves user engagement. On the other hand, a sitemap is for search engines to find and index your content. Let's see how to generate these in a Next.js JAMStack site.</description>
-    <content>RSS and sitemap are essential for blogs today. RSS Feeds let users subscribe to your content and improves user engagement. On the other hand, a sitemap is for search engines to find and index your content. 
+    <description>RSS and sitemap are essential for blogs today. RSS Feeds let users subscribe to your content and improves user engagement. On the other hand, a sitemap is for search engines to find and index your content. 
 
 When using a CMS like wordpress etc.., the RSS and sitemap XML files are generated at runtime. However, for JAMStack websites, we would like to create them at the build stage. I was not able to find an OOTB solution for next.js to create these files. The XML files for RSS and sitemap are not too complex to generate. Hence, I decided not to introduce any third-party dependencies to generate these files.
 
@@ -131,7 +129,7 @@ There are mainly three questions to answer when generating these files. Where, W
 
 The convention followed by many is to place rss.xml and sitemap.xml at the root of the website. Sitemaps can be split into files and referenced from the main sitemap.xml. This is needed when sitemaps grow very huge. We will stick to single sitemap.xml for now.
 
-Next.js routing does not support files that are not content. So, what we can do is, to place these files in the `public` directory. Next's static file serving feature serves the files under this directory at the root of the website.
+Next.js routing does not support files that are not content. So, what we can do is, to place these files in the `public` directory. Next&apos;s static file serving feature serves the files under this directory at the root of the website.
 
 ## 2. When to generate 
 
@@ -143,13 +141,13 @@ If anyone visits /dummy we should probably return 404 and ignore the page from a
 
 ###### dummy.tsx [View on GitHub][1]
 ```JSX
-const Dummy: React.FC = () => (
-  <>
-    <Head>
-      <meta name="robots" content="noindex" />
-    </Head>
-    <DefaultErrorPage statusCode={404} />
-  </>
+const Dummy: React.FC = () =&gt; (
+  &lt;&gt;
+    &lt;Head&gt;
+      &lt;meta name=&quot;robots&quot; content=&quot;noindex&quot; /&gt;
+    &lt;/Head&gt;
+    &lt;DefaultErrorPage statusCode={404} /&gt;
+  &lt;/&gt;
 );
 ```
 
@@ -159,7 +157,7 @@ The creation of XML files is a matter of iterating over the content and generati
 
 ###### dummy.tsx - getStaticProps() [View on GitHub][2]
 ```javascript
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () =&gt; {
   const posts = await getPosts();
   generateRss(posts);
 
@@ -174,63 +172,63 @@ export const getStaticProps: GetStaticProps = async () => {
 
 ###### generateRss() [View on GitHub][3]
 ```javascript
-const generateRssItem = (post: Post): string => `
-  <item>
-    <guid>${getFullUrl(`blog/${post.slug}`)}</guid>
-    <title>${post.title}</title>
-    <link>${getFullUrl(`blog/${post.slug}`)}</link>
-    <description>${post.description}</description>
-    <pubDate>${new Date(post.publishDate).toUTCString()}</pubDate>
-  </item>
+const generateRssItem = (post: Post): string =&gt; `
+  &lt;item&gt;
+    &lt;guid&gt;${getFullUrl(`blog/${post.slug}`)}&lt;/guid&gt;
+    &lt;title&gt;${post.title}&lt;/title&gt;
+    &lt;link&gt;${getFullUrl(`blog/${post.slug}`)}&lt;/link&gt;
+    &lt;description&gt;${post.description}&lt;/description&gt;
+    &lt;pubDate&gt;${new Date(post.publishDate).toUTCString()}&lt;/pubDate&gt;
+  &lt;/item&gt;
 `;
 
-export default (posts: Post[]): void => {
-  const rss = `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-      <title>${SITE_TITLE}</title>
-      <link>${getFullUrl('')}</link>
-      <description>${SITE_TITLE}</description>
-      <language>en</language>
-      <lastBuildDate>${new Date(posts[0].publishDate).toUTCString()}</lastBuildDate>
-      <atom:link href="${getFullUrl('rss.xml')}" rel="self" type="application/rss+xml"/>
-      ${posts.map(generateRssItem).join('')}
-    </channel>
-  </rss>`;
-  fs.writeFileSync('./public/rss.xml', rss);
+export default (posts: Post[]): void =&gt; {
+  const rss = `&lt;rss version=&quot;2.0&quot; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+    &lt;channel&gt;
+      &lt;title&gt;${SITE_TITLE}&lt;/title&gt;
+      &lt;link&gt;${getFullUrl(&apos;&apos;)}&lt;/link&gt;
+      &lt;description&gt;${SITE_TITLE}&lt;/description&gt;
+      &lt;language&gt;en&lt;/language&gt;
+      &lt;lastBuildDate&gt;${new Date(posts[0].publishDate).toUTCString()}&lt;/lastBuildDate&gt;
+      &lt;atom:link href=&quot;${getFullUrl(&apos;rss.xml&apos;)}&quot; rel=&quot;self&quot; type=&quot;application/rss+xml&quot;/&gt;
+      ${posts.map(generateRssItem).join(&apos;&apos;)}
+    &lt;/channel&gt;
+  &lt;/rss&gt;`;
+  fs.writeFileSync(&apos;./public/rss.xml&apos;, rss);
 };
 ```
 
 ###### generateSitemap() [View on GitHub][4]
 ```javascript
-export default (pages: Content[]): void => {
+export default (pages: Content[]): void =&gt; {
   const links = compose(map(mapToSitemapEntry))(pages);
 
   if (fs.existsSync(SITEMAP_PATH)) {
     fs.unlinkSync(SITEMAP_PATH);
   }
-  const stream = fs.createWriteStream(SITEMAP_PATH, { flags: 'a' });
-  stream.write(`<?xml version="1.0" encoding="UTF-8"?>
-  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`);
-  links.forEach((item) => {
+  const stream = fs.createWriteStream(SITEMAP_PATH, { flags: &apos;a&apos; });
+  stream.write(`&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+  &lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;`);
+  links.forEach((item) =&gt; {
     stream.write(`
-      <url>
-        <loc>${item.url}</loc>
-        <changefreq>${item.changefreq}</changefreq>
-        <priority>${item.priority}</priority>
-      </url>`);
+      &lt;url&gt;
+        &lt;loc&gt;${item.url}&lt;/loc&gt;
+        &lt;changefreq&gt;${item.changefreq}&lt;/changefreq&gt;
+        &lt;priority&gt;${item.priority}&lt;/priority&gt;
+      &lt;/url&gt;`);
   });
-  stream.write('\n');
-  stream.write('</urlset>');
+  stream.write(&apos;\n&apos;);
+  stream.write(&apos;&lt;/urlset&gt;&apos;);
   stream.end();
 };
 ```
 
-You can later validate these xml files againts the specs at [W3C Feed Validator](https://validator.w3.org/feed/ "W3C Feed Validator") and [XML Sitemap Validator](https://www.xml-sitemaps.com/validate-xml-sitemap.html "XML Sitemap Validator")
+You can later validate these xml files againts the specs at [W3C Feed Validator](https://validator.w3.org/feed/ &quot;W3C Feed Validator&quot;) and [XML Sitemap Validator](https://www.xml-sitemaps.com/validate-xml-sitemap.html &quot;XML Sitemap Validator&quot;)
 
-[1]: https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/pages/dummy.tsx#L15-L22 "View on GitHub"
-[2]: https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/pages/dummy.tsx#L24-L34 "View on GitHub"
-[3]: https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/lib/rss.ts "View on GitHub"
-[4]: https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/lib/sitemap.ts "View on GitHub"
+[1]: https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/pages/dummy.tsx#L15-L22 &quot;View on GitHub&quot;
+[2]: https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/pages/dummy.tsx#L24-L34 &quot;View on GitHub&quot;
+[3]: https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/lib/rss.ts &quot;View on GitHub&quot;
+[4]: https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/lib/sitemap.ts &quot;View on GitHub&quot;</description>
     <pubDate>Mon, 30 Nov 2020 16:00:00 GMT</pubDate>
   </item>
 
@@ -238,8 +236,7 @@ You can later validate these xml files againts the specs at [W3C Feed Validator]
     <guid>https://theoverengineered.blog/blog/initial-post</guid>
     <title>Initial Post</title>
     <link>https://theoverengineered.blog/blog/initial-post</link>
-    <description>Jamstack is very popular these days. I decided to build this site using Jamstack practices. This post summarizes the various layers of the Jamstack eco-system used on this site.</description>
-    <content>Taking a cue from [Initial Commit][1], I decided to name this first post as Initial Post.
+    <description>Taking a cue from [Initial Commit][1], I decided to name this first post as Initial Post.
 
 [Jamstack][2] is very popular these days. So decided to build this site using Jamstack practices. This post summarizes the various parts of the Jamstack eco-system used on the site. 
 
@@ -249,7 +246,7 @@ You can later validate these xml files againts the specs at [W3C Feed Validator]
 
 *   **VCS:** Github.
 
-*   **Hosting / CDN:** The site runs on Github pages. It's free and fast. It provides all the features needed for now. However, I would also like to try out services like Netlify.
+*   **Hosting / CDN:** The site runs on Github pages. It&apos;s free and fast. It provides all the features needed for now. However, I would also like to try out services like Netlify.
 
 *   **Backend:** At the moment, the site can compile to static HTML. So I am deferring this decision until the time I need a backend.
 
@@ -263,10 +260,10 @@ The overall architecture of the site looks like this.
 *   https://nextjs.org/docs/api-routes/introduction
 *   https://dev.to/eroberts/why-you-should-use-netlify-instead-of-github-pages-3on1
 
-[1]: https://initialcommit.com/blog/What-Is-An-Initial-Commit-In-Git "What is initial commit?"
-[2]: https://medium.com/@gianfranconuschese/the-jamstack-return-of-the-server-side-rendering-5a1313dafc92 "Jamstack"
-[3]: https://nextjs.org/docs/api-routes/introduction "NextJS solution for API routes"
-[4]: /diagrams/initial-post.svg
+[1]: https://initialcommit.com/blog/What-Is-An-Initial-Commit-In-Git &quot;What is initial commit?&quot;
+[2]: https://medium.com/@gianfranconuschese/the-jamstack-return-of-the-server-side-rendering-5a1313dafc92 &quot;Jamstack&quot;
+[3]: https://nextjs.org/docs/api-routes/introduction &quot;NextJS solution for API routes&quot;
+[4]: /diagrams/initial-post.svg</description>
     <pubDate>Mon, 30 Nov 2020 16:00:00 GMT</pubDate>
   </item>
 
