@@ -1,6 +1,8 @@
 import fs from 'fs';
+import hydrate from 'next-mdx-remote/hydrate';
 import xmlEscape from 'xml-escape';
 
+import { components } from '@lib/markdown';
 import { Post } from '@models/post';
 
 import { getFullUrl, SITE_TITLE } from './siteinfo';

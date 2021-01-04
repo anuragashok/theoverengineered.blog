@@ -26,6 +26,11 @@ const Dummy: React.FC = () => (
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await getPosts();
+  await asyncForEach(posts, async (p) => {
+    const { renderedOutput } = await renderToString(p.body, { components, mdxOptions });
+    // eslint-disable-next-line no-param-reassign
+    p.body = renderedOutput;
+  });
   generateRss(posts);
 
   const pages = await getAllContent();

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaDev, FaMedium } from 'react-icons/fa';
 
 import theme from '@lib/theme';
 import { Card, CardActions, CardHeader, createStyles, makeStyles } from '@material-ui/core';
@@ -13,17 +14,27 @@ const useStyles = makeStyles(() =>
     },
 
     linkedin: {
-      fontSize: '4em',
+      fontSize: '3em',
       color: '#2867B2',
-      marginRight: theme.spacing(2),
+      marginRight: theme.spacing(1),
     },
     github: {
-      fontSize: '3.8em',
+      fontSize: '3em',
       color: 'black',
-      marginRight: theme.spacing(2),
+      marginRight: theme.spacing(1),
+    },
+    medium: {
+      fontSize: '3em',
+      color: 'black',
+      marginRight: theme.spacing(1),
+    },
+    devto: {
+      fontSize: '3em',
+      color: 'black',
+      marginRight: theme.spacing(1),
     },
     rss: {
-      fontSize: '4em',
+      fontSize: '3em',
       color: '#ee802f',
     },
     wrapper: {
@@ -49,6 +60,12 @@ const SocialFollow: React.FC = () => {
           </a>
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/anuragashok" title="Github">
             <GitHubIcon fontSize="large" className={classes.github} />
+          </a>
+          <a target="_blank" rel="noopener noreferrer" href="/rss.xml" title="Medium">
+            <FaMedium fontSize="large" className={classes.medium} />
+          </a>
+          <a target="_blank" rel="noopener noreferrer" href="/rss.xml" title="Dev.to">
+            <FaDev fontSize="large" className={classes.devto} />
           </a>
           <a target="_blank" rel="noopener noreferrer" href="/rss.xml" title="RSS Feed">
             <RssFeedIcon fontSize="large" className={classes.rss} />
