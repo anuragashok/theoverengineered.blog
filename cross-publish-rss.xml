@@ -11,63 +11,27 @@
     <guid>https://theoverengineered.blog/blog/use-docker-for-local-development</guid>
     <title>Use Docker for local development</title>
     <link>https://theoverengineered.blog/blog/use-docker-for-local-development</link>
-    <description>Docker/Containers have become the de facto standard for building and deploying applications. The isolation, portability and easy scaling capabilities of containers make them the popular choice for app deployments.
-
-However, containers are not only for application deployments but can also be for local development. They can solve many developer issues. The use of Docker containers during development can have the following advantages.
-- runs on my machine = runs anywhere
-- there are no cumbersome configuration/version incompatibilities
-- The development environment is closer to production
-- easy onboarding of new developers
-
-Let&apos;s see how I use Docker for the development of this blog. 
-
-## Base Image
-TheOverEngineeredBlog is built on next.js which needs node. Also, the package manager of choice is yarn. The official node image on docker hub is [here][1]. It includes yarn too. This blog uses `node:lts` image to get the latest lts version of node.
-
-## Docker Compose
-I created a docker-compose.yml file at the root of the project to define the entire container configuration and add more containers if necessary later.
-
-###### docker-compose.yml [View on GitHub][2]
-```yaml
-version: &apos;3.7&apos;
+    <description>&lt;p&gt;Docker/Containers have become the de facto standard for building and deploying applications. The isolation, portability and easy scaling capabilities of containers make them the popular choice for app deployments.&lt;/p&gt;&lt;p&gt;However, containers are not only for application deployments but can also be for local development. They can solve many developer issues. The use of Docker containers during development can have the following advantages.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;runs on my machine = runs anywhere&lt;/li&gt;&lt;li&gt;there are no cumbersome configuration/version incompatibilities&lt;/li&gt;&lt;li&gt;The development environment is closer to production&lt;/li&gt;&lt;li&gt;easy onboarding of new developers&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Let&amp;#x27;s see how I use Docker for the development of this blog. &lt;/p&gt;&lt;h2&gt;Base Image&lt;/h2&gt;&lt;p&gt;TheOverEngineeredBlog is built on next.js which needs node. Also, the package manager of choice is yarn. The official node image on docker hub is &lt;a href=&quot;https://hub.docker.com/_/node&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;here&lt;/a&gt;. It includes yarn too. This blog uses &lt;code&gt;node:lts&lt;/code&gt; image to get the latest lts version of node.&lt;/p&gt;&lt;h2&gt;Docker Compose&lt;/h2&gt;&lt;p&gt;I created a docker-compose.yml file at the root of the project to define the entire container configuration and add more containers if necessary later.&lt;/p&gt;&lt;h6 class=&quot;MuiTypography-root jss1 MuiTypography-subtitle2&quot;&gt;docker-compose.yml &lt;a href=&quot;https://github.com/anuragashok/theoverengineered.blog/blob/d784e3e072e19ae753cbe3fd39c64de86388e851/docker-compose.yml&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;View on GitHub&lt;/a&gt;&lt;/h6&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;version: &amp;#x27;3.7&amp;#x27;
 
 services:
   runner: 
     image: node:lts
     ports: 
-      - &quot;$PORT:3000&quot;
-      - &quot;$DEBUGPORT:9229&quot;
+      - &amp;quot;$PORT:3000&amp;quot;
+      - &amp;quot;$DEBUGPORT:9229&amp;quot;
     volumes:
     - .:/app:cached
     - yarn-cache-volume:/usr/local/share/.cache/yarn/v6:cached
     working_dir: /app
-    command: &quot;$COMMAND&quot;
+    command: &amp;quot;$COMMAND&amp;quot;
 
 volumes:
   yarn-cache-volume:
-```
-
-The compose file defines a service named `runner` using the base image &quot;node:lts&quot;.
-
-The `ports` section instructs Docker to expose ports 3000 and 9229 at $PORT and $DEBUGPORT on the host. PORT and DEBUGPORT are environment variables to configure the desired ports on the host.
-
-The `volumes` section defines mounts and named volume. The root directory of the project is mounted to `/app` inside the container. Also, it defines a named persistent volume for yarn cache. Docker manages this volume and persists it through the container stop/start. This cache reduces yarn execution time next time the container starts.
-
-`working_dir` set the current directory to `./app` to avoid changing the directory each time the container starts.
-
-`command` is set to an environment variable $COMMAND. It can be supplied when invoking docker-compose.
-
-## RUN script
-
-I like to have a `run` script to spawn the container using docker-compose to avoid writing the same commands each time. 
-
-###### run [View on GitHub][3]
-```bash
-#!/bin/sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The compose file defines a service named &lt;code&gt;runner&lt;/code&gt; using the base image &amp;quot;node:lts&amp;quot;.&lt;/p&gt;&lt;p&gt;The &lt;code&gt;ports&lt;/code&gt; section instructs Docker to expose ports 3000 and 9229 at $PORT and $DEBUGPORT on the host. PORT and DEBUGPORT are environment variables to configure the desired ports on the host.&lt;/p&gt;&lt;p&gt;The &lt;code&gt;volumes&lt;/code&gt; section defines mounts and named volume. The root directory of the project is mounted to &lt;code&gt;/app&lt;/code&gt; inside the container. Also, it defines a named persistent volume for yarn cache. Docker manages this volume and persists it through the container stop/start. This cache reduces yarn execution time next time the container starts.&lt;/p&gt;&lt;p&gt;&lt;code&gt;working_dir&lt;/code&gt; set the current directory to &lt;code&gt;./app&lt;/code&gt; to avoid changing the directory each time the container starts.&lt;/p&gt;&lt;p&gt;&lt;code&gt;command&lt;/code&gt; is set to an environment variable $COMMAND. It can be supplied when invoking docker-compose.&lt;/p&gt;&lt;h2&gt;RUN script&lt;/h2&gt;&lt;p&gt;I like to have a &lt;code&gt;run&lt;/code&gt; script to spawn the container using docker-compose to avoid writing the same commands each time. &lt;/p&gt;&lt;h6 class=&quot;MuiTypography-root jss1 MuiTypography-subtitle2&quot;&gt;run &lt;a href=&quot;https://github.com/anuragashok/theoverengineered.blog/blob/d784e3e072e19ae753cbe3fd39c64de86388e851/run&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;View on GitHub&lt;/a&gt;&lt;/h6&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;#!/bin/sh
 export PORT=${PORT:-3000}
 export DEBUGPORT=${DEBUGPORT:-9229}
-export COMMAND=${@:-&quot;yarn dev&quot;}
-EXISTING_CONTAINER_ID=&quot;&quot;
+export COMMAND=${@:-&amp;quot;yarn dev&amp;quot;}
+EXISTING_CONTAINER_ID=&amp;quot;&amp;quot;
 if [ -n `docker-compose ps -q runner` ]; then
     EXISTING_CONTAINER_ID=`docker-compose ps -q runner`;
 elif [ -n `docker ps -q --no-trunc | grep $(docker-compose ps -q runner)` ]; then
@@ -75,43 +39,16 @@ elif [ -n `docker ps -q --no-trunc | grep $(docker-compose ps -q runner)` ]; the
 fi
 
 if [ -z $EXISTING_CONTAINER_ID ]; then
-  COMMAND=${@:-&quot;yarn dev&quot;} docker-compose run --service-ports --rm runner
+  COMMAND=${@:-&amp;quot;yarn dev&amp;quot;} docker-compose run --service-ports --rm runner
 else
-  echo &quot;Existing container ${EXISTING_CONTAINER_ID}&quot;
+  echo &amp;quot;Existing container ${EXISTING_CONTAINER_ID}&amp;quot;
   docker exec -it ${EXISTING_CONTAINER_ID} ${COMMAND}
 fi
-```
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The script is executed like this.&lt;/p&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;[PORT=&amp;lt;desired port on host&amp;gt; DEBUGPORT=&amp;lt;desired debug port on host&amp;gt;] ./run [&amp;lt;command&amp;gt;]
 
-The script is executed like this.
-
-```bash
-[PORT=&lt;desired port on host&gt; DEBUGPORT=&lt;desired debug port on host&gt;] ./run [&lt;command&gt;]
-
-DEFAULTS PORT=3000 DEBUGPORT=9229 COMMAND=&quot;yarn dev&quot;
-```
-
-Sections in `[]` are optional and have defaults set.
-
-To start the application, I need to write `./run` on the shell. It starts the container, exposing the ports 3000 and 9229 on the host and then runs `yarn dev` inside the container.
-
-![Sample Output][4]
-
-Any command can be executed inside the container by prefixing it with `./run`
-E.g. To add a package, run &apos;./run yarn add some-package-name&apos;
-
-You could also do `./run bash` to get a bash shell attached to the container. This bash shell can be used to execute commands inside the container without the prefix &apos;./run&apos;
-
-The script also checks if a container is already running for the application and reuses the container to execute the command. Credits to [this answer on ServerFault][5] 
-
-We can also write a similar script for windows machines using cmd/PowerShell.
-
-This setup has helped me enormously. I don&apos;t have to worry about installing different versions of node/java/python etc. Besides, now the only dependency for local development is, Docker!
-
-[1]: https://hub.docker.com/_/node &quot;Official Node DockerHub Image&quot;
-[2]: https://github.com/anuragashok/theoverengineered.blog/blob/d784e3e072e19ae753cbe3fd39c64de86388e851/docker-compose.yml &quot;View on Github&quot;
-[3]: https://github.com/anuragashok/theoverengineered.blog/blob/d784e3e072e19ae753cbe3fd39c64de86388e851/run &quot;View on GitHub&quot;
-[4]: /docker-for-local-min.mp4
-[5]: https://serverfault.com/a/935674/130937 &quot;Check if container running&quot;</description>
+DEFAULTS PORT=3000 DEBUGPORT=9229 COMMAND=&amp;quot;yarn dev&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Sections in &lt;code&gt;[]&lt;/code&gt; are optional and have defaults set.&lt;/p&gt;&lt;p&gt;To start the application, I need to write &lt;code&gt;./run&lt;/code&gt; on the shell. It starts the container, exposing the ports 3000 and 9229 on the host and then runs &lt;code&gt;yarn dev&lt;/code&gt; inside the container.&lt;/p&gt;&lt;p&gt;&lt;video autoplay=&quot;&quot; loop=&quot;&quot; muted=&quot;&quot; playsinline=&quot;&quot; width=&quot;100%&quot;&gt;&lt;source src=&quot;/docker-for-local-min.mp4&quot; type=&quot;video/mp4&quot;/&gt;&lt;/video&gt;&lt;/p&gt;&lt;p&gt;Any command can be executed inside the container by prefixing it with &lt;code&gt;./run&lt;/code&gt;
+E.g. To add a package, run &amp;#x27;./run yarn add some-package-name&amp;#x27;&lt;/p&gt;&lt;p&gt;You could also do &lt;code&gt;./run bash&lt;/code&gt; to get a bash shell attached to the container. This bash shell can be used to execute commands inside the container without the prefix &amp;#x27;./run&amp;#x27;&lt;/p&gt;&lt;p&gt;The script also checks if a container is already running for the application and reuses the container to execute the command. Credits to &lt;a href=&quot;https://serverfault.com/a/935674/130937&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;this answer on ServerFault&lt;/a&gt; &lt;/p&gt;&lt;p&gt;We can also write a similar script for windows machines using cmd/PowerShell.&lt;/p&gt;&lt;p&gt;This setup has helped me enormously. I don&amp;#x27;t have to worry about installing different versions of node/java/python etc. Besides, now the only dependency for local development is, Docker!&lt;/p&gt;</description>
     <pubDate>Mon, 14 Dec 2020 16:00:00 GMT</pubDate>
   </item>
 
@@ -119,45 +56,15 @@ This setup has helped me enormously. I don&apos;t have to worry about installing
     <guid>https://theoverengineered.blog/blog/generate-rss-and-sitemap-for-nextjs-jamstack-site</guid>
     <title>Generate RSS and Sitemap for Next.js JAMstack site</title>
     <link>https://theoverengineered.blog/blog/generate-rss-and-sitemap-for-nextjs-jamstack-site</link>
-    <description>RSS and sitemap are essential for blogs today. RSS Feeds let users subscribe to your content and improves user engagement. On the other hand, a sitemap is for search engines to find and index your content. 
-
-When using a CMS like wordpress etc.., the RSS and sitemap XML files are generated at runtime. However, for JAMStack websites, we would like to create them at the build stage. I was not able to find an OOTB solution for next.js to create these files. The XML files for RSS and sitemap are not too complex to generate. Hence, I decided not to introduce any third-party dependencies to generate these files.
-
-There are mainly three questions to answer when generating these files. Where, When and How?
-
-## 1. Where to place 
-
-The convention followed by many is to place rss.xml and sitemap.xml at the root of the website. Sitemaps can be split into files and referenced from the main sitemap.xml. This is needed when sitemaps grow very huge. We will stick to single sitemap.xml for now.
-
-Next.js routing does not support files that are not content. So, what we can do is, to place these files in the `public` directory. Next&apos;s static file serving feature serves the files under this directory at the root of the website.
-
-## 2. When to generate 
-
-We have to generate the files inside the public directory during the build. During the build, the `getStaticProps` function gets invoked for each page. We can leverage this function to create our XML files.
-
-We can use `getStaticProps` function of any page component to create the files. However, this will add unnecessary code to the pages. So, I created a dummy.tsx page. The `getStaticProps` of this page component will contain the additional build time processing logic.
-
-If anyone visits /dummy we should probably return 404 and ignore the page from any search engine indexing. 
-
-###### dummy.tsx [View on GitHub][1]
-```JSX
-const Dummy: React.FC = () =&gt; (
-  &lt;&gt;
-    &lt;Head&gt;
-      &lt;meta name=&quot;robots&quot; content=&quot;noindex&quot; /&gt;
-    &lt;/Head&gt;
-    &lt;DefaultErrorPage statusCode={404} /&gt;
-  &lt;/&gt;
+    <description>&lt;p&gt;RSS and sitemap are essential for blogs today. RSS Feeds let users subscribe to your content and improves user engagement. On the other hand, a sitemap is for search engines to find and index your content. &lt;/p&gt;&lt;p&gt;When using a CMS like wordpress etc.., the RSS and sitemap XML files are generated at runtime. However, for JAMStack websites, we would like to create them at the build stage. I was not able to find an OOTB solution for next.js to create these files. The XML files for RSS and sitemap are not too complex to generate. Hence, I decided not to introduce any third-party dependencies to generate these files.&lt;/p&gt;&lt;p&gt;There are mainly three questions to answer when generating these files. Where, When and How?&lt;/p&gt;&lt;h2&gt;1. Where to place&lt;/h2&gt;&lt;p&gt;The convention followed by many is to place rss.xml and sitemap.xml at the root of the website. Sitemaps can be split into files and referenced from the main sitemap.xml. This is needed when sitemaps grow very huge. We will stick to single sitemap.xml for now.&lt;/p&gt;&lt;p&gt;Next.js routing does not support files that are not content. So, what we can do is, to place these files in the &lt;code&gt;public&lt;/code&gt; directory. Next&amp;#x27;s static file serving feature serves the files under this directory at the root of the website.&lt;/p&gt;&lt;h2&gt;2. When to generate&lt;/h2&gt;&lt;p&gt;We have to generate the files inside the public directory during the build. During the build, the &lt;code&gt;getStaticProps&lt;/code&gt; function gets invoked for each page. We can leverage this function to create our XML files.&lt;/p&gt;&lt;p&gt;We can use &lt;code&gt;getStaticProps&lt;/code&gt; function of any page component to create the files. However, this will add unnecessary code to the pages. So, I created a dummy.tsx page. The &lt;code&gt;getStaticProps&lt;/code&gt; of this page component will contain the additional build time processing logic.&lt;/p&gt;&lt;p&gt;If anyone visits /dummy we should probably return 404 and ignore the page from any search engine indexing. &lt;/p&gt;&lt;h6 class=&quot;MuiTypography-root jss1 MuiTypography-subtitle2&quot;&gt;dummy.tsx &lt;a href=&quot;https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/pages/dummy.tsx#L15-L22&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;View on GitHub&lt;/a&gt;&lt;/h6&gt;&lt;pre&gt;&lt;code class=&quot;language-JSX&quot;&gt;const Dummy: React.FC = () =&amp;gt; (
+  &amp;lt;&amp;gt;
+    &amp;lt;Head&amp;gt;
+      &amp;lt;meta name=&amp;quot;robots&amp;quot; content=&amp;quot;noindex&amp;quot; /&amp;gt;
+    &amp;lt;/Head&amp;gt;
+    &amp;lt;DefaultErrorPage statusCode={404} /&amp;gt;
+  &amp;lt;/&amp;gt;
 );
-```
-
-## 3. How to generate 
-
-The creation of XML files is a matter of iterating over the content and generating the XML tags. This can be implemented in the `getStaticProps` function of `pages/dummy.tsx`. You can find the snippets of the code below. You can refer to GitHub repo for this blog for the full code sample. 
-
-###### dummy.tsx - getStaticProps() [View on GitHub][2]
-```javascript
-export const getStaticProps: GetStaticProps = async () =&gt; {
+&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;3. How to generate&lt;/h2&gt;&lt;p&gt;The creation of XML files is a matter of iterating over the content and generating the XML tags. This can be implemented in the &lt;code&gt;getStaticProps&lt;/code&gt; function of &lt;code&gt;pages/dummy.tsx&lt;/code&gt;. You can find the snippets of the code below. You can refer to GitHub repo for this blog for the full code sample. &lt;/p&gt;&lt;h6 class=&quot;MuiTypography-root jss1 MuiTypography-subtitle2&quot;&gt;dummy.tsx - getStaticProps() &lt;a href=&quot;https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/pages/dummy.tsx#L24-L34&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;View on GitHub&lt;/a&gt;&lt;/h6&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;export const getStaticProps: GetStaticProps = async () =&amp;gt; {
   const posts = await getPosts();
   generateRss(posts);
 
@@ -168,67 +75,52 @@ export const getStaticProps: GetStaticProps = async () =&gt; {
     props: {},
   };
 };
-```
-
-###### generateRss() [View on GitHub][3]
-```javascript
-const generateRssItem = (post: Post): string =&gt; `
-  &lt;item&gt;
-    &lt;guid&gt;${getFullUrl(`blog/${post.slug}`)}&lt;/guid&gt;
-    &lt;title&gt;${post.title}&lt;/title&gt;
-    &lt;link&gt;${getFullUrl(`blog/${post.slug}`)}&lt;/link&gt;
-    &lt;description&gt;${post.description}&lt;/description&gt;
-    &lt;pubDate&gt;${new Date(post.publishDate).toUTCString()}&lt;/pubDate&gt;
-  &lt;/item&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h6 class=&quot;MuiTypography-root jss1 MuiTypography-subtitle2&quot;&gt;generateRss() &lt;a href=&quot;https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/lib/rss.ts&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;View on GitHub&lt;/a&gt;&lt;/h6&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;const generateRssItem = (post: Post): string =&amp;gt; `
+  &amp;lt;item&amp;gt;
+    &amp;lt;guid&amp;gt;${getFullUrl(`blog/${post.slug}`)}&amp;lt;/guid&amp;gt;
+    &amp;lt;title&amp;gt;${post.title}&amp;lt;/title&amp;gt;
+    &amp;lt;link&amp;gt;${getFullUrl(`blog/${post.slug}`)}&amp;lt;/link&amp;gt;
+    &amp;lt;description&amp;gt;${post.description}&amp;lt;/description&amp;gt;
+    &amp;lt;pubDate&amp;gt;${new Date(post.publishDate).toUTCString()}&amp;lt;/pubDate&amp;gt;
+  &amp;lt;/item&amp;gt;
 `;
 
-export default (posts: Post[]): void =&gt; {
-  const rss = `&lt;rss version=&quot;2.0&quot; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot;&gt;
-    &lt;channel&gt;
-      &lt;title&gt;${SITE_TITLE}&lt;/title&gt;
-      &lt;link&gt;${getFullUrl(&apos;&apos;)}&lt;/link&gt;
-      &lt;description&gt;${SITE_TITLE}&lt;/description&gt;
-      &lt;language&gt;en&lt;/language&gt;
-      &lt;lastBuildDate&gt;${new Date(posts[0].publishDate).toUTCString()}&lt;/lastBuildDate&gt;
-      &lt;atom:link href=&quot;${getFullUrl(&apos;rss.xml&apos;)}&quot; rel=&quot;self&quot; type=&quot;application/rss+xml&quot;/&gt;
-      ${posts.map(generateRssItem).join(&apos;&apos;)}
-    &lt;/channel&gt;
-  &lt;/rss&gt;`;
-  fs.writeFileSync(&apos;./public/rss.xml&apos;, rss);
+export default (posts: Post[]): void =&amp;gt; {
+  const rss = `&amp;lt;rss version=&amp;quot;2.0&amp;quot; xmlns:atom=&amp;quot;http://www.w3.org/2005/Atom&amp;quot;&amp;gt;
+    &amp;lt;channel&amp;gt;
+      &amp;lt;title&amp;gt;${SITE_TITLE}&amp;lt;/title&amp;gt;
+      &amp;lt;link&amp;gt;${getFullUrl(&amp;#x27;&amp;#x27;)}&amp;lt;/link&amp;gt;
+      &amp;lt;description&amp;gt;${SITE_TITLE}&amp;lt;/description&amp;gt;
+      &amp;lt;language&amp;gt;en&amp;lt;/language&amp;gt;
+      &amp;lt;lastBuildDate&amp;gt;${new Date(posts[0].publishDate).toUTCString()}&amp;lt;/lastBuildDate&amp;gt;
+      &amp;lt;atom:link href=&amp;quot;${getFullUrl(&amp;#x27;rss.xml&amp;#x27;)}&amp;quot; rel=&amp;quot;self&amp;quot; type=&amp;quot;application/rss+xml&amp;quot;/&amp;gt;
+      ${posts.map(generateRssItem).join(&amp;#x27;&amp;#x27;)}
+    &amp;lt;/channel&amp;gt;
+  &amp;lt;/rss&amp;gt;`;
+  fs.writeFileSync(&amp;#x27;./public/rss.xml&amp;#x27;, rss);
 };
-```
-
-###### generateSitemap() [View on GitHub][4]
-```javascript
-export default (pages: Content[]): void =&gt; {
+&lt;/code&gt;&lt;/pre&gt;&lt;h6 class=&quot;MuiTypography-root jss1 MuiTypography-subtitle2&quot;&gt;generateSitemap() &lt;a href=&quot;https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/lib/sitemap.ts&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;View on GitHub&lt;/a&gt;&lt;/h6&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;export default (pages: Content[]): void =&amp;gt; {
   const links = compose(map(mapToSitemapEntry))(pages);
 
   if (fs.existsSync(SITEMAP_PATH)) {
     fs.unlinkSync(SITEMAP_PATH);
   }
-  const stream = fs.createWriteStream(SITEMAP_PATH, { flags: &apos;a&apos; });
-  stream.write(`&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-  &lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;`);
-  links.forEach((item) =&gt; {
+  const stream = fs.createWriteStream(SITEMAP_PATH, { flags: &amp;#x27;a&amp;#x27; });
+  stream.write(`&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+  &amp;lt;urlset xmlns=&amp;quot;http://www.sitemaps.org/schemas/sitemap/0.9&amp;quot;&amp;gt;`);
+  links.forEach((item) =&amp;gt; {
     stream.write(`
-      &lt;url&gt;
-        &lt;loc&gt;${item.url}&lt;/loc&gt;
-        &lt;changefreq&gt;${item.changefreq}&lt;/changefreq&gt;
-        &lt;priority&gt;${item.priority}&lt;/priority&gt;
-      &lt;/url&gt;`);
+      &amp;lt;url&amp;gt;
+        &amp;lt;loc&amp;gt;${item.url}&amp;lt;/loc&amp;gt;
+        &amp;lt;changefreq&amp;gt;${item.changefreq}&amp;lt;/changefreq&amp;gt;
+        &amp;lt;priority&amp;gt;${item.priority}&amp;lt;/priority&amp;gt;
+      &amp;lt;/url&amp;gt;`);
   });
-  stream.write(&apos;\n&apos;);
-  stream.write(&apos;&lt;/urlset&gt;&apos;);
+  stream.write(&amp;#x27;\n&amp;#x27;);
+  stream.write(&amp;#x27;&amp;lt;/urlset&amp;gt;&amp;#x27;);
   stream.end();
 };
-```
-
-You can later validate these xml files againts the specs at [W3C Feed Validator](https://validator.w3.org/feed/ &quot;W3C Feed Validator&quot;) and [XML Sitemap Validator](https://www.xml-sitemaps.com/validate-xml-sitemap.html &quot;XML Sitemap Validator&quot;)
-
-[1]: https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/pages/dummy.tsx#L15-L22 &quot;View on GitHub&quot;
-[2]: https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/pages/dummy.tsx#L24-L34 &quot;View on GitHub&quot;
-[3]: https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/lib/rss.ts &quot;View on GitHub&quot;
-[4]: https://github.com/anuragashok/theoverengineered.blog/blob/1b1f462a7cb697ecdcd222313d913101de176dfa/src/lib/sitemap.ts &quot;View on GitHub&quot;</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You can later validate these xml files againts the specs at &lt;a href=&quot;https://validator.w3.org/feed/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;W3C Feed Validator&lt;/a&gt; and &lt;a href=&quot;https://www.xml-sitemaps.com/validate-xml-sitemap.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;XML Sitemap Validator&lt;/a&gt;&lt;/p&gt;</description>
     <pubDate>Mon, 30 Nov 2020 16:00:00 GMT</pubDate>
   </item>
 
@@ -236,34 +128,7 @@ You can later validate these xml files againts the specs at [W3C Feed Validator]
     <guid>https://theoverengineered.blog/blog/initial-post</guid>
     <title>Initial Post</title>
     <link>https://theoverengineered.blog/blog/initial-post</link>
-    <description>Taking a cue from [Initial Commit][1], I decided to name this first post as Initial Post.
-
-[Jamstack][2] is very popular these days. So decided to build this site using Jamstack practices. This post summarizes the various parts of the Jamstack eco-system used on the site. 
-
-*   **Presentation Layer:** ReactJS has been on my learning list. The most popular starting points for ReactJS are create-react-app and Next.js. I eventually decided to use Next.js as it provides server-side rendering, static-site generation and serverless functions out of the box. The features can help to get the site up quickly.
-
-*   **API:** The site does not need an API at the moment. However, Next.js provides a [straightforward solution][3] to create APIs too.
-
-*   **VCS:** Github.
-
-*   **Hosting / CDN:** The site runs on Github pages. It&apos;s free and fast. It provides all the features needed for now. However, I would also like to try out services like Netlify.
-
-*   **Backend:** At the moment, the site can compile to static HTML. So I am deferring this decision until the time I need a backend.
-
-The overall architecture of the site looks like this.
-
-![Intial Architecture][4]
-
-### References:
-
-*   https://medium.com/@gianfranconuschese/the-jamstack-return-of-the-server-side-rendering-5a1313dafc92
-*   https://nextjs.org/docs/api-routes/introduction
-*   https://dev.to/eroberts/why-you-should-use-netlify-instead-of-github-pages-3on1
-
-[1]: https://initialcommit.com/blog/What-Is-An-Initial-Commit-In-Git &quot;What is initial commit?&quot;
-[2]: https://medium.com/@gianfranconuschese/the-jamstack-return-of-the-server-side-rendering-5a1313dafc92 &quot;Jamstack&quot;
-[3]: https://nextjs.org/docs/api-routes/introduction &quot;NextJS solution for API routes&quot;
-[4]: /diagrams/initial-post.svg</description>
+    <description>&lt;p&gt;Taking a cue from &lt;a href=&quot;https://initialcommit.com/blog/What-Is-An-Initial-Commit-In-Git&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Initial Commit&lt;/a&gt;, I decided to name this first post as Initial Post.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://medium.com/@gianfranconuschese/the-jamstack-return-of-the-server-side-rendering-5a1313dafc92&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Jamstack&lt;/a&gt; is very popular these days. So decided to build this site using Jamstack practices. This post summarizes the various parts of the Jamstack eco-system used on the site. &lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;Presentation Layer:&lt;/strong&gt; ReactJS has been on my learning list. The most popular starting points for ReactJS are create-react-app and Next.js. I eventually decided to use Next.js as it provides server-side rendering, static-site generation and serverless functions out of the box. The features can help to get the site up quickly.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;API:&lt;/strong&gt; The site does not need an API at the moment. However, Next.js provides a &lt;a href=&quot;https://nextjs.org/docs/api-routes/introduction&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;straightforward solution&lt;/a&gt; to create APIs too.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;VCS:&lt;/strong&gt; Github.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;Hosting / CDN:&lt;/strong&gt; The site runs on Github pages. It&amp;#x27;s free and fast. It provides all the features needed for now. However, I would also like to try out services like Netlify.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;strong&gt;Backend:&lt;/strong&gt; At the moment, the site can compile to static HTML. So I am deferring this decision until the time I need a backend.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The overall architecture of the site looks like this.&lt;/p&gt;&lt;p&gt;&lt;img alt=&quot;Intial Architecture&quot; src=&quot;/diagrams/initial-post.svg&quot; width=&quot;100%&quot;/&gt;&lt;/p&gt;&lt;h3&gt;References:&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://medium.com/@gianfranconuschese/the-jamstack-return-of-the-server-side-rendering-5a1313dafc92&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;https://medium.com/@gianfranconuschese/the-jamstack-return-of-the-server-side-rendering-5a1313dafc92&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://nextjs.org/docs/api-routes/introduction&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;https://nextjs.org/docs/api-routes/introduction&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://dev.to/eroberts/why-you-should-use-netlify-instead-of-github-pages-3on1&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;https://dev.to/eroberts/why-you-should-use-netlify-instead-of-github-pages-3on1&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</description>
     <pubDate>Mon, 30 Nov 2020 16:00:00 GMT</pubDate>
   </item>
 
