@@ -4,7 +4,7 @@
       <link>https://theoverengineered.blog/</link>
       <description>the_Over_Engineered_Blog</description>
       <language>en</language>
-      <lastBuildDate>Mon, 14 Dec 2020 16:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 03 Jan 2021 16:00:00 GMT</lastBuildDate>
       <atom:link href="https://theoverengineered.blog/rss.xml" rel="self" type="application/rss+xml"/>
       
   <item>
@@ -12,7 +12,9 @@
     <title>Use Docker for local development</title>
     <link>https://theoverengineered.blog/blog/use-docker-for-local-development</link>
     <description>Containers are not only for application deployments. They offer many advantages for local development too. Find out how theOverEngineeredBlog uses Docker for local development.</description>
-    <pubDate>Mon, 14 Dec 2020 16:00:00 GMT</pubDate>
+    <category>docker container development</category>
+    <enclosure url="https://images.ctfassets.net/lybfa03y94yw/31kEfTG8wIqkq8mixJ9skZ/6d86d7f4d0c700179d8eae5b31e01766/Untitled_design.jpg" />
+    <pubDate>Sun, 03 Jan 2021 16:00:00 GMT</pubDate>
   </item>
 
   <item>
@@ -20,7 +22,9 @@
     <title>Generate RSS and Sitemap for Next.js JAMstack site</title>
     <link>https://theoverengineered.blog/blog/generate-rss-and-sitemap-for-nextjs-jamstack-site</link>
     <description>RSS and sitemap are essential for blogs today. RSS Feeds let users subscribe to your content and improves user engagement. On the other hand, a sitemap is for search engines to find and index your content. Let&apos;s see how to generate these in a Next.js JAMStack site.</description>
-    <pubDate>Mon, 30 Nov 2020 16:00:00 GMT</pubDate>
+    <category>rss sitemap blogging jamstack nextjs</category>
+    <enclosure url="https://images.ctfassets.net/lybfa03y94yw/3IejIjMkhHCU5xGOwXuW5o/6e1c1a898cbcde31682db277183fba0b/GENERATE_RSS_AND_SITEMAP.png" />
+    <pubDate>Sun, 27 Dec 2020 16:00:00 GMT</pubDate>
   </item>
 
   <item>
@@ -28,7 +32,9 @@
     <title>Initial Post</title>
     <link>https://theoverengineered.blog/blog/initial-post</link>
     <description>Jamstack is very popular these days. I decided to build this site using Jamstack practices. This post summarizes the various layers of the Jamstack eco-system used on this site.</description>
-    <pubDate>Mon, 30 Nov 2020 16:00:00 GMT</pubDate>
+    <category>nextjs jamstack github github-pages react</category>
+    <enclosure url="https://images.ctfassets.net/lybfa03y94yw/3ORoq6MAZaRmKg4f7lOtPK/0aa4c47b8ed6973cd594e5673a504b28/initial-post.svg" />
+    <pubDate>Sat, 19 Dec 2020 16:00:00 GMT</pubDate>
   </item>
 
     </channel>
