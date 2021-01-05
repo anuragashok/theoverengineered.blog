@@ -13,6 +13,8 @@ const generateRssItem = (post: Post): string => `
     <title>${post.title}</title>
     <link>${getFullUrl(`blog/${post.slug}`)}</link>
     <description>${xmlEscape(post.description)}</description>
+    <category>${post.tags?.join(' ')}</category>
+    <enclosure url="https:${post.heroImageUrl}" />
     <pubDate>${new Date(post.publishDate).toUTCString()}</pubDate>
   </item>
 `;
@@ -23,6 +25,8 @@ const generateRssItemForCrossPublish = (post: Post): string => `
     <title>${post.title}</title>
     <link>${getFullUrl(`blog/${post.slug}`)}</link>
     <description>${xmlEscape(post.body)}</description>
+    <category>${post.tags?.join(' ')}</category>
+    <enclosure url="https:${post.heroImageUrl}" />
     <pubDate>${new Date(post.publishDate).toUTCString()}</pubDate>
   </item>
 `;

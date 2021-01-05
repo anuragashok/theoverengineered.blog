@@ -10,12 +10,19 @@ const client = createClient({
 });
 
 const mapToPost = (post: Entry<IBlogPostFields>): Post => {
+  let { body } = post.fields;
+  const { heroImage } = post.fields;
+  if (heroImage?.fields?.file.url) {
+    body = `![a](${heroImage.fields.file.url})  
+
+${body}`;
+  }
   return {
     title: post.fields.title,
     slug: post.fields.slug,
     heroImageUrl: post.fields.heroImage?.fields?.file.url || '',
     description: post.fields.description,
-    body: post.fields.body,
+    body,
     author: { name: post.fields.author?.fields.name as string },
     publishDate: post.fields.publishDate,
     tags: post.fields.tags || null,
@@ -41,6 +48,7 @@ export async function getPostBySlug(slug: string): Promise<Post> {
 export async function getPosts(): Promise<Post[]> {
   const entries = await client.getEntries({
     content_type: 'blogPost',
+    order: '-fields.publishDate',
   });
 
   return compose(map(mapToPost))(entries.items);

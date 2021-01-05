@@ -3,6 +3,7 @@
 import dateformat from 'dateformat';
 import hydrate from 'next-mdx-remote/hydrate';
 
+import Media from '@components/Media';
 import Title from '@components/Title';
 import { components } from '@lib/markdown';
 import { makeStyles, Typography } from '@material-ui/core';
@@ -32,7 +33,6 @@ const BlogPostFull: React.FC<Props> = ({ post }) => {
     <>
       <Title title={title} />
       <Typography variant="overline">{formattedDate}</Typography>
-      {heroImageUrl && <SvgIcon component={Logo} viewBox="0 0 100 100" />}
       <Typography variant="body1" align="justify" className={classes.body}>
         {content}
       </Typography>
