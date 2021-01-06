@@ -13,11 +13,11 @@ type Props = {
   post: Post;
 };
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     teaserpost: {
-      marginBlockEnd: '1em',
-      borderBottom: '1px solid #eeeeee',
+      marginBlockStart: theme.spacing(2),
+      marginBlockEnd: theme.spacing(0),
     },
   })
 );

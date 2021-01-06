@@ -9,14 +9,13 @@ import SocialFollow from '@components/SocialFollow';
 import asyncForEach from '@lib/asyncForEach';
 import { getPosts } from '@lib/cms';
 import { components, mdxOptions } from '@lib/markdown';
-import { Grid, makeStyles } from '@material-ui/core';
+import { Divider, Grid, makeStyles } from '@material-ui/core';
 import { Post } from '@models/post';
 
 const useStyles = makeStyles(() => ({
   sticky: {
     position: 'sticky',
-    top: '-.3em',
-    zIndex: 10000,
+    top: '1em',
   },
 }));
 
@@ -26,12 +25,14 @@ type Props = {
 
 const Home: React.FC<Props> = ({ posts }) => {
   const classes = useStyles();
+  const postCount = posts.length;
   return (
     <Layout pageTitle="Home" pageDescription="Home" url="/">
       <Grid item xs={12} sm={9}>
-        {posts.map((post) => (
+        {posts.map((post, i) => (
           <Grid item xs={12} sm={12}>
             <BlogPostTeaser post={post} />
+            {i + 1 !== postCount && <Divider light />}
           </Grid>
         ))}
       </Grid>

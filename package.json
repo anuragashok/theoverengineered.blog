@@ -2,7 +2,7 @@
   "name": "with-typescript",
   "version": "1.0.0",
   "scripts": {
-    "dev": "NODE_OPTIONS='--inspect=0.0.0.0:9229'  next",
+    "dev": "NODE_OPTIONS='--inspect=0.0.0.0:9229' next",
     "build": "next build && next export",
     "start": "next start",
     "type-check": "tsc",
@@ -43,6 +43,7 @@
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
+    "@types/xml-escape": "^1.1.0",
     "@zeit/next-typescript": "^1.1.1",
     "babel-eslint": "^10.1.0",
     "contentful-management": "^7.0.0",

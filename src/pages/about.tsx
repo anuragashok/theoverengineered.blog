@@ -13,8 +13,7 @@ import { Card, CardContent, Grid, makeStyles } from '@material-ui/core';
 const useStyles = makeStyles(() => ({
   sticky: {
     position: 'sticky',
-    top: '-.3em',
-    zIndex: 10000,
+    top: '1em',
   },
   card: {
     marginBottom: '10px',

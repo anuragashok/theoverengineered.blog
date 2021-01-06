@@ -43,7 +43,7 @@ const useStyles = makeStyles(() =>
 const SocialFollow: React.FC = () => {
   const classes = useStyles();
   return (
-    <Card raised>
+    <Card variant="outlined">
       <CardHeader title="Subscribe" className={classes.header} />
       <CardActions>
         <div className={classes.wrapper}>

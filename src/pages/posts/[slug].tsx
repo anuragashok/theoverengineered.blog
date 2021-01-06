@@ -16,8 +16,7 @@ import { Post } from '@models/post';
 const useStyles = makeStyles(() => ({
   sticky: {
     position: 'sticky',
-    top: '-.3em',
-    zIndex: 10000,
+    top: '1em',
   },
 }));
 
