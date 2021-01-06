@@ -3,6 +3,7 @@
 import dateformat from 'dateformat';
 import hydrate from 'next-mdx-remote/hydrate';
 
+import Comments from '@components/Comments';
 import Media from '@components/Media';
 import Title from '@components/Title';
 import { components } from '@lib/markdown';
@@ -21,10 +22,11 @@ const useStyles = makeStyles(() => ({
 }));
 type Props = {
   post: Post;
+  url: string;
 };
 
-const BlogPostFull: React.FC<Props> = ({ post }) => {
-  const { title, body, heroImageUrl, publishDate } = post;
+const BlogPostFull: React.FC<Props> = ({ post, url }) => {
+  const { title, body, publishDate, description } = post;
   const formattedDate = publishDate && dateformat(new Date(publishDate), 'longDate');
   const classes = useStyles();
   const content = hydrate(body, { components });
@@ -36,6 +38,7 @@ const BlogPostFull: React.FC<Props> = ({ post }) => {
       <Typography variant="body1" align="justify" className={classes.body}>
         {content}
       </Typography>
+      <Comments url={url} title={title} description={description} />
     </>
   );
 };

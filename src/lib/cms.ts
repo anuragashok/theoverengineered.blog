@@ -12,8 +12,10 @@ const client = createClient({
 const mapToPost = (post: Entry<IBlogPostFields>): Post => {
   let { body } = post.fields;
   const { heroImage } = post.fields;
+
   if (heroImage?.fields?.file.url) {
     body = `![a](${heroImage.fields.file.url})  
+    *${heroImage.fields.description}*
 
 ${body}`;
   }

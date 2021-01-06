@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +36,11 @@ const PrimaryNavigation: React.FC = () => {
   return (
     <>
       <nav>
+        <style jsx>{`
+          nav :global(a) {
+            min-width: 30px !important;
+          }
+        `}</style>
         <Hidden mdUp implementation="js">
           <Drawer
             variant="temporary"
@@ -55,7 +61,19 @@ const PrimaryNavigation: React.FC = () => {
               <List>
                 {PRIMARY_NAV_LINKS.map((link) => (
                   <ListItem button key={link.name}>
-                    <ButtonLink href={link.url}>{link.name === 'GitHub' ? <GitHubIcon /> : link.name}</ButtonLink>
+                    <ButtonLink href={link.url}>
+                      {(link.name === 'GitHub' && (
+                        <>
+                          <GitHubIcon /> &nbsp; GitHub
+                        </>
+                      )) ||
+                        (link.name === 'LinkedIn' && (
+                          <>
+                            <LinkedInIcon /> &nbsp; LinkedIn
+                          </>
+                        )) ||
+                        link.name}
+                    </ButtonLink>
                   </ListItem>
                 ))}
               </List>
@@ -65,7 +83,9 @@ const PrimaryNavigation: React.FC = () => {
         <Hidden smDown implementation="js">
           {PRIMARY_NAV_LINKS.map((link) => (
             <ButtonLink href={link.url} key={link.url}>
-              {link.name === 'GitHub' ? <GitHubIcon /> : link.name}
+              {(link.name === 'GitHub' && <GitHubIcon />) ||
+                (link.name === 'LinkedIn' && <LinkedInIcon />) ||
+                link.name}
             </ButtonLink>
           ))}
         </Hidden>

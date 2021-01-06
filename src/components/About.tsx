@@ -29,9 +29,10 @@ const About: React.FC = () => {
       />
       <CardContent>
         <Typography variant="body2" color="textPrimary" component="p">
-          I am curious person who enjoys building software. My primary focus has been Java-based microservices. I am
-          also experimenting with the javascript ecosystem for web. I love all things code, and am very passionate about
-          &quot;everything as code&quot;.
+          I am from Mumbai, India; building software for Singapore Airlines @ Singapore. I enjoy all things code and am
+          particularly passionate about automation and &quot;everything as code&quot;. In my 8+ years of making code
+          work, I have experimented with several languages but focused primarily on java microservices and the
+          javascript ecosystem.
           <Link href="/about">Read More</Link>
         </Typography>
       </CardContent>

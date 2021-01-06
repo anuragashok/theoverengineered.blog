@@ -28,7 +28,7 @@ const BlogPostPage: React.FC<Post> = (post: Post) => {
     <>
       <Layout pageTitle={post.title} pageDescription={post.description} url={`blog/${post.slug}`}>
         <Grid item xs={12} sm={9}>
-          <BlogPostFull post={post} />
+          <BlogPostFull post={post} url={`blog/${post.slug}`} />
         </Grid>
         <Grid item xs={12} sm={3}>
           <div className={classes.sticky}>

@@ -14,6 +14,10 @@ export const PRIMARY_NAV_LINKS = [
     name: 'GitHub',
     url: 'https://github.com/anuragashok/theoverengineered.blog',
   },
+  {
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/anurag-ashok/',
+  },
 ];
 
 export const getFullUrl = (path: string) => {
