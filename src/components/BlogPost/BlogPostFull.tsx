@@ -4,14 +4,10 @@ import dateformat from 'dateformat';
 import hydrate from 'next-mdx-remote/hydrate';
 
 import Comments from '@components/Comments';
-import Media from '@components/Media';
 import Title from '@components/Title';
 import { components } from '@lib/markdown';
 import { makeStyles, Typography } from '@material-ui/core';
-import SvgIcon from '@material-ui/core/SvgIcon/SvgIcon';
 import { Post } from '@models/post';
-
-import Logo from '../Layout/Logo.svg';
 
 const useStyles = makeStyles(() => ({
   body: {

@@ -20,6 +20,6 @@ export const PRIMARY_NAV_LINKS = [
   },
 ];
 
-export const getFullUrl = (path: string) => {
+export const getFullUrl = (path: string): string => {
   return `https://theoverengineered.blog/${path}`;
 };

@@ -1,7 +1,6 @@
-import { Avatar, Card, CardContent, CardHeader, createStyles, makeStyles, Typography } from '@material-ui/core';
+import { Card, CardContent, CardHeader, createStyles, makeStyles, Typography } from '@material-ui/core';
 
 import { Link } from './Link';
-import Media from './Media';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

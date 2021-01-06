@@ -7,7 +7,6 @@ import highlightPlugin from 'remark-prism';
 import About from '@components/About';
 import { BlogPostFull } from '@components/BlogPost';
 import Layout from '@components/Layout';
-import SocialFollow from '@components/SocialFollow';
 import { getPostBySlug, getPosts } from '@lib/cms';
 import { components } from '@lib/markdown';
 import Grid from '@material-ui/core/Grid';

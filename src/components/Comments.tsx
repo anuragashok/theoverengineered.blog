@@ -7,8 +7,6 @@ import Divider from '@material-ui/core/Divider';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
 import ShareIcon from '@material-ui/icons/Share';
 
-import { Link } from './Link';
-
 type Props = {
   url: string;
   description: string;
