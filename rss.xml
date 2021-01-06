@@ -8,9 +8,9 @@
       <atom:link href="https://theoverengineered.blog/rss.xml" rel="self" type="application/rss+xml"/>
       
   <item>
-    <guid>https://theoverengineered.blog/blog/use-docker-for-local-development</guid>
+    <guid>https://theoverengineered.blog/posts/use-docker-for-local-development</guid>
     <title>Use Docker for local development</title>
-    <link>https://theoverengineered.blog/blog/use-docker-for-local-development</link>
+    <link>https://theoverengineered.blog/posts/use-docker-for-local-development</link>
     <description>Containers are not only for application deployments. They offer many advantages for local development too. Find out how theOverEngineeredBlog uses Docker for local development.</description>
     <category>docker container development</category>
     <enclosure url="https://images.ctfassets.net/lybfa03y94yw/31kEfTG8wIqkq8mixJ9skZ/6d86d7f4d0c700179d8eae5b31e01766/Untitled_design.jpg" />
@@ -18,9 +18,9 @@
   </item>
 
   <item>
-    <guid>https://theoverengineered.blog/blog/generate-rss-and-sitemap-for-nextjs-jamstack-site</guid>
+    <guid>https://theoverengineered.blog/posts/generate-rss-and-sitemap-for-nextjs-jamstack-site</guid>
     <title>Generate RSS and Sitemap for Next.js JAMstack site</title>
-    <link>https://theoverengineered.blog/blog/generate-rss-and-sitemap-for-nextjs-jamstack-site</link>
+    <link>https://theoverengineered.blog/posts/generate-rss-and-sitemap-for-nextjs-jamstack-site</link>
     <description>RSS and sitemap are essential for blogs today. RSS Feeds let users subscribe to your content and improves user engagement. On the other hand, a sitemap is for search engines to find and index your content. Let&apos;s see how to generate these in a Next.js JAMStack site.</description>
     <category>rss sitemap blogging jamstack nextjs</category>
     <enclosure url="https://images.ctfassets.net/lybfa03y94yw/3IejIjMkhHCU5xGOwXuW5o/6e1c1a898cbcde31682db277183fba0b/GENERATE_RSS_AND_SITEMAP.png" />
@@ -28,9 +28,9 @@
   </item>
 
   <item>
-    <guid>https://theoverengineered.blog/blog/initial-post</guid>
+    <guid>https://theoverengineered.blog/posts/initial-post</guid>
     <title>Initial Post</title>
-    <link>https://theoverengineered.blog/blog/initial-post</link>
+    <link>https://theoverengineered.blog/posts/initial-post</link>
     <description>Jamstack is very popular these days. I decided to build this site using Jamstack practices. This post summarizes the various layers of the Jamstack eco-system used on this site.</description>
     <category>nextjs jamstack github github-pages react</category>
     <enclosure url="https://images.ctfassets.net/lybfa03y94yw/3ORoq6MAZaRmKg4f7lOtPK/0aa4c47b8ed6973cd594e5673a504b28/initial-post.svg" />

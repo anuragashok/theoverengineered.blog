@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
-        <loc>https://theoverengineered.blog/blog/use-docker-for-local-development</loc>
+        <loc>https://theoverengineered.blog/posts/use-docker-for-local-development</loc>
         <changefreq>weekly</changefreq>
         <priority>1</priority>
       </url>
@@ -11,12 +11,12 @@
         <priority>0.5</priority>
       </url>
       <url>
-        <loc>https://theoverengineered.blog/blog/initial-post</loc>
+        <loc>https://theoverengineered.blog/posts/initial-post</loc>
         <changefreq>weekly</changefreq>
         <priority>1</priority>
       </url>
       <url>
-        <loc>https://theoverengineered.blog/blog/generate-rss-and-sitemap-for-nextjs-jamstack-site</loc>
+        <loc>https://theoverengineered.blog/posts/generate-rss-and-sitemap-for-nextjs-jamstack-site</loc>
         <changefreq>weekly</changefreq>
         <priority>1</priority>
       </url>
