@@ -7,7 +7,7 @@ const SITEMAP_PATH = './public/sitemap.xml';
 type SiteMapEntry = { url: string; changefreq: string; priority: number };
 const mapToSitemapEntry = (page: Content): SiteMapEntry => {
   return {
-    url: getFullUrl(page.type === 'blogPost' ? `blog/${page.slug}` : page.slug),
+    url: getFullUrl(page.type === 'blogPost' ? `posts/${page.slug}` : page.slug),
     changefreq: page.type === 'blogPost' ? 'weekly' : 'daily',
     priority: page.type === 'blogPost' ? 1.0 : 0.5,
   };

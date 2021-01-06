@@ -26,9 +26,9 @@ const BlogPostPage: React.FC<Post> = (post: Post) => {
   const classes = useStyles();
   return (
     <>
-      <Layout pageTitle={post.title} pageDescription={post.description} url={`blog/${post.slug}`}>
+      <Layout pageTitle={post.title} pageDescription={post.description} url={`posts/${post.slug}`}>
         <Grid item xs={12} sm={9}>
-          <BlogPostFull post={post} url={`blog/${post.slug}`} />
+          <BlogPostFull post={post} url={`posts/${post.slug}`} />
         </Grid>
         <Grid item xs={12} sm={3}>
           <div className={classes.sticky}>

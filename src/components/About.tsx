@@ -17,16 +17,8 @@ const useStyles = makeStyles((theme) =>
 const About: React.FC = () => {
   const classes = useStyles();
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar} variant="rounded">
-            <Media src="/anurag.jpg" alt="Anurag Ashok" />
-          </Avatar>
-        }
-        title="Anurag Ashok"
-        subheader="Author"
-      />
+    <Card className={classes.root} raised>
+      <CardHeader title="Anurag Ashok" titleTypographyProps={{ variant: 'h5' }} subheader="Author" />
       <CardContent>
         <Typography variant="body2" color="textPrimary" component="p">
           I am from Mumbai, India; building software for Singapore Airlines @ Singapore. I enjoy all things code and am

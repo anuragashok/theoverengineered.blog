@@ -31,14 +31,14 @@ const BlogPostTeaser: React.FC<Props> = ({ post }) => {
     <Card className={classes.teaserpost} elevation={0}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          <Link href={`blog/${slug}`}>{title}</Link>
+          <Link href={`posts/${slug}`}>{title}</Link>
         </Typography>
         <Typography variant="overline">{formattedDate}</Typography>
         <Typography variant="body1" align="justify" gutterBottom>
           {content}
         </Typography>
         <Typography variant="body2" align="justify">
-          <Link href={`blog/${slug}`}>Read More</Link>
+          <Link href={`posts/${slug}`}>Read More</Link>
         </Typography>
       </CardContent>
     </Card>

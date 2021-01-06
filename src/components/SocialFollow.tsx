@@ -1,11 +1,8 @@
 import React from 'react';
-import { FaDev, FaMedium } from 'react-icons/fa';
+import { FaDev, FaMedium, FaRssSquare } from 'react-icons/fa';
 
 import theme from '@lib/theme';
 import { Card, CardActions, CardHeader, createStyles, makeStyles } from '@material-ui/core';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import RssFeedIcon from '@material-ui/icons/RssFeed';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -46,21 +43,10 @@ const useStyles = makeStyles(() =>
 const SocialFollow: React.FC = () => {
   const classes = useStyles();
   return (
-    <Card>
-      <CardHeader title="Stay Connected" className={classes.header} />
+    <Card raised>
+      <CardHeader title="Subscribe" className={classes.header} />
       <CardActions>
         <div className={classes.wrapper}>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.linkedin.com/in/anurag-ashok/"
-            title="LinkedIn"
-          >
-            <LinkedInIcon fontSize="large" className={classes.linkedin} />
-          </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://github.com/anuragashok" title="Github">
-            <GitHubIcon fontSize="large" className={classes.github} />
-          </a>
           <a target="_blank" rel="noopener noreferrer" href="/rss.xml" title="Medium">
             <FaMedium fontSize="large" className={classes.medium} />
           </a>
@@ -68,7 +54,7 @@ const SocialFollow: React.FC = () => {
             <FaDev fontSize="large" className={classes.devto} />
           </a>
           <a target="_blank" rel="noopener noreferrer" href="/rss.xml" title="RSS Feed">
-            <RssFeedIcon fontSize="large" className={classes.rss} />
+            <FaRssSquare fontSize="large" className={classes.rss} />
           </a>
         </div>
       </CardActions>

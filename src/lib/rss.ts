@@ -9,9 +9,9 @@ import { getFullUrl, SITE_TITLE } from './siteinfo';
 
 const generateRssItem = (post: Post): string => `
   <item>
-    <guid>${getFullUrl(`blog/${post.slug}`)}</guid>
+    <guid>${getFullUrl(`posts/${post.slug}`)}</guid>
     <title>${post.title}</title>
-    <link>${getFullUrl(`blog/${post.slug}`)}</link>
+    <link>${getFullUrl(`posts/${post.slug}`)}</link>
     <description>${xmlEscape(post.description)}</description>
     <category>${post.tags?.join(' ')}</category>
     <enclosure url="https:${post.heroImageUrl}" />
@@ -21,9 +21,9 @@ const generateRssItem = (post: Post): string => `
 
 const generateRssItemForCrossPublish = (post: Post): string => `
   <item>
-    <guid>${getFullUrl(`blog/${post.slug}`)}</guid>
+    <guid>${getFullUrl(`posts/${post.slug}`)}</guid>
     <title>${post.title}</title>
-    <link>${getFullUrl(`blog/${post.slug}`)}</link>
+    <link>${getFullUrl(`posts/${post.slug}`)}</link>
     <description>${xmlEscape(post.body)}</description>
     <category>${post.tags?.join(' ')}</category>
     <enclosure url="https:${post.heroImageUrl}" />
