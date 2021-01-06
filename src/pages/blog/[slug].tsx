@@ -32,7 +32,6 @@ const BlogPostPage: React.FC<Post> = (post: Post) => {
         </Grid>
         <Grid item xs={12} sm={3}>
           <div className={classes.sticky}>
-            <SocialFollow />
             <About />
           </div>
         </Grid>
