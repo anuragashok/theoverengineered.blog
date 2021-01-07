@@ -15,7 +15,7 @@ type Props = {
   pageDescription: string;
   url: string;
   children: React.ReactNode;
-  image: string;
+  image?: string;
 };
 
 const useStyles = makeStyles((theme) =>
