@@ -15,6 +15,7 @@ type Props = {
   pageDescription: string;
   url: string;
   children: React.ReactNode;
+  image: string;
 };
 
 const useStyles = makeStyles((theme) =>
@@ -26,11 +27,11 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const Layout: React.FC<Props> = ({ pageTitle, pageDescription, url, children }) => {
+const Layout: React.FC<Props> = ({ pageTitle, pageDescription, url, children, image }) => {
   const classes = useStyles();
   return (
     <>
-      <Meta url={url} title={pageTitle} description={pageDescription} />
+      <Meta url={url} title={pageTitle} description={pageDescription} image={image} />
       <Head>
         <title>
           {pageTitle} | {SITE_TITLE}

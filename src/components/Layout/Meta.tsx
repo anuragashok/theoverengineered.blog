@@ -7,9 +7,17 @@ type Props = {
   url: string;
   description: string;
   title: string;
+  image: string;
 };
 
-const Meta: React.FC<Props> = ({ url, description, title }) => {
+const Meta: React.FC<Props> = ({ url, description, title, image }) => {
+  let ogimage = image;
+  if (!ogimage) {
+    ogimage = getFullUrl('banner.jpg');
+  }
+  if (ogimage.startsWith('//')) {
+    ogimage = `https:${ogimage}`;
+  }
   return (
     <Head>
       <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
@@ -30,21 +38,16 @@ const Meta: React.FC<Props> = ({ url, description, title }) => {
 
       <meta property="og:type" content="website" />
       <meta property="og:url" content={getFullUrl(url)} />
-      <meta property="og:title" content="{title}" />
+      <meta property="og:title" content={title} />
+      <meta property="og:image" content={ogimage} />
       <meta property="og:description" content={description} />
-      <meta
-        property="og:image"
-        content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
-      />
 
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={getFullUrl(url)} />
-      <meta property="twitter:title" content="{title}" />
+      <meta property="twitter:title" content={title} />
+      <meta property="twitter:image" content={ogimage} />
       <meta property="twitter:description" content={description} />
-      <meta
-        property="twitter:image"
-        content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
-      />
+
       <link rel="canonical" href={getFullUrl(url)} />
       <link rel="alternate" type="application/atom+xml" title="theoverengineered.blog" href="/rss.xml" />
     </Head>

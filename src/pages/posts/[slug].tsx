@@ -24,7 +24,12 @@ const BlogPostPage: React.FC<Post> = (post: Post) => {
   const classes = useStyles();
   return (
     <>
-      <Layout pageTitle={post.title} pageDescription={post.description} url={`posts/${post.slug}`}>
+      <Layout
+        pageTitle={post.title}
+        pageDescription={post.description}
+        url={`posts/${post.slug}`}
+        image={post.heroImageUrl}
+      >
         <Grid item xs={12} sm={9}>
           <BlogPostFull post={post} url={`posts/${post.slug}`} />
         </Grid>
