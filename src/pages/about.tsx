@@ -2,13 +2,15 @@ import { GetStaticProps } from 'next';
 import renderToString from 'next-mdx-remote/render-to-string';
 import React from 'react';
 
-import GithubProfile from '@components/GithubProfile';
+import AboutCard from '@components/About';
 import Layout from '@components/Layout';
-import LinkedinProfile from '@components/LinkedInProfile';
+import { Link } from '@components/Link';
 import Page from '@components/Page';
+import SocialFollow from '@components/SocialFollow';
 import { getPage } from '@lib/cms';
 import { components, mdxOptions } from '@lib/markdown';
-import { Card, CardContent, Grid, makeStyles } from '@material-ui/core';
+import { SOCIAL_MEDIA_URLS } from '@lib/siteinfo';
+import { Grid, makeStyles, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   sticky: {
@@ -33,23 +35,18 @@ const About: React.FC<Props> = ({ title, body, slug }) => {
       <Layout pageTitle={title} pageDescription={title} url={slug}>
         <Grid item xs={12} sm={8}>
           <Page title={title} body={body} />
+          <Typography variant="body1">
+            The blog is also available on my pages at <Link href={SOCIAL_MEDIA_URLS.linkedin}>Medium</Link> and{' '}
+            <Link href={SOCIAL_MEDIA_URLS.linkedin}>Dev.to</Link>
+          </Typography>
+          <SocialFollow />
         </Grid>
 
         <Grid item xs={12} sm={4}>
           <div className={classes.sticky}>
-            <Card raised className={classes.card}>
-              <CardContent>
-                <GithubProfile username="anuragashok" />
-              </CardContent>
-            </Card>
-            <Card raised className={classes.card}>
-              <CardContent>
-                <LinkedinProfile />
-              </CardContent>
-            </Card>
+            <AboutCard />
           </div>
         </Grid>
-        <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer />
       </Layout>
     </>
   );
