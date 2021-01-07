@@ -2,6 +2,7 @@ import React from 'react';
 import { RWebShare as WebShare } from 'react-web-share';
 
 import { Link } from '@components/Link';
+import { getFullUrl } from '@lib/siteinfo';
 import { Container, Fab } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import { makeStyles } from '@material-ui/core/styles';
@@ -69,7 +70,7 @@ const Footer: React.FC<Props> = (props) => {
       <WebShare
         data={{
           text: description,
-          url,
+          url: getFullUrl(url),
           title,
         }}
       >
