@@ -27,7 +27,7 @@ const Home: React.FC<Props> = ({ posts }) => {
   const classes = useStyles();
   const postCount = posts.length;
   return (
-    <Layout pageTitle="Home" pageDescription="Home" url="/">
+    <Layout pageTitle="" pageDescription="Home" url="/">
       <Grid item xs={12} sm={9}>
         {posts.map((post, i) => (
           <Grid item xs={12} sm={12}>

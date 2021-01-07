@@ -33,7 +33,7 @@ const Meta: React.FC<Props> = ({ url, description, title, image }) => {
       <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
 
       <title>{title}</title>
-      <meta name="title" content="{title}" />
+      <meta name="title" content={title} />
       <meta name="description" content={description} />
 
       <meta property="og:type" content="website" />

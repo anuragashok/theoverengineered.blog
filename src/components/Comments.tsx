@@ -2,6 +2,7 @@ import React from 'react';
 import { FaDev, FaMedium } from 'react-icons/fa';
 import { RWebShare as WebShare } from 'react-web-share';
 
+import { getFullUrl } from '@lib/siteinfo';
 import { Button, createStyles, makeStyles, Typography } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
@@ -44,7 +45,7 @@ const Comments: React.FC<Props> = (props) => {
       <WebShare
         data={{
           text: description,
-          url,
+          url: getFullUrl(url),
           title,
         }}
       >

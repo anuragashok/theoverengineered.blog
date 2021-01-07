@@ -29,13 +29,13 @@ const useStyles = makeStyles((theme) =>
 
 const Layout: React.FC<Props> = ({ pageTitle, pageDescription, url, children, image }) => {
   const classes = useStyles();
+  const title = pageTitle ? `${pageTitle} | ${SITE_TITLE}` : `${SITE_TITLE}`;
+
   return (
     <>
       <Meta url={url} title={pageTitle} description={pageDescription} image={image} />
       <Head>
-        <title>
-          {pageTitle} | {SITE_TITLE}
-        </title>
+        <title>{title}</title>
       </Head>
       <div className={classes.root}>
         <Container maxWidth={false} disableGutters>
