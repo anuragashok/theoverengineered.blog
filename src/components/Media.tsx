@@ -10,6 +10,17 @@ const Media: React.FC<Props> = (props) => {
       </video>
     );
   }
+
+  if (src.includes('ctfasset')) {
+    return (
+      <picture>
+        <source srcSet={`${src}?fm=webp`} />
+        <source srcSet={src} />
+        <img alt={alt} src={src} width="100%" />;
+      </picture>
+    );
+  }
+
   return <img alt={alt} src={src} width="100%" />;
 };
 
