@@ -39,7 +39,7 @@ const About: React.FC<Props> = ({ condensed }) => {
       />
       <CardContent>
         <Typography variant={condensed ? 'body2' : 'body1'} color="textPrimary" component="p">
-          Thank you for visiting this blog!
+          Welcome to my blog!
           <br />
           <br /> I am Anurag Ashok, from Mumbai, India; at present building software for Singapore Airlines @ Singapore.
           I enjoy all things code and am particularly passionate about automation and &quot;everything as code&quot;. In
@@ -47,8 +47,8 @@ const About: React.FC<Props> = ({ condensed }) => {
           microservices and the javascript ecosystem.
           <br />
           <br />
-          You can reach out to me for any dicussions or feedback at
-          <Link href={SOCIAL_MEDIA_URLS.linkedin}>LinkedIn</Link>
+          You can reach out to me for any discussions or feedback at{' '}
+          <Link href={SOCIAL_MEDIA_URLS.linkedin}>LinkedIn</Link>.
         </Typography>
       </CardContent>
     </Card>

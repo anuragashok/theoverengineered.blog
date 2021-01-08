@@ -4,6 +4,8 @@ export const SOCIAL_MEDIA_URLS = {
   linkedin: 'https://www.linkedin.com/in/anurag-ashok/',
   githubrepo: 'https://github.com/anuragashok/theoverengineered.blog',
   githubprofile: 'https://github.com/anuragashok',
+  medium: 'https://anuragashok.medium.com/',
+  devto: 'https://dev.to/anuragashok',
 };
 export const PRIMARY_NAV_LINKS = [
   {

@@ -28,7 +28,7 @@ const Home: React.FC<Props> = ({ posts }) => {
   const postCount = posts.length;
   return (
     <Layout pageTitle="" pageDescription="Home" url="/">
-      <Grid item xs={12} sm={9}>
+      <Grid item xs={12} md={8} lg={9}>
         {posts.map((post, i) => (
           <Grid item xs={12} sm={12}>
             <BlogPostTeaser post={post} />
@@ -36,10 +36,10 @@ const Home: React.FC<Props> = ({ posts }) => {
           </Grid>
         ))}
       </Grid>
-      <Grid item xs={12} sm={3}>
+      <Grid item xs={12} md={4} lg={3}>
         <div className={classes.sticky}>
           <SocialFollow />
-          <About />
+          <About condensed />
         </div>
       </Grid>
     </Layout>

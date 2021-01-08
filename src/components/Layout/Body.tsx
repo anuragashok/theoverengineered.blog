@@ -23,7 +23,7 @@ const Body: React.FC<Props> = ({ children }) => {
   return (
     <>
       <div className={classes.root}>
-        <Grid container className={classes.paper} spacing={5}>
+        <Grid container className={classes.paper} spacing={3}>
           {children}
         </Grid>
       </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { FaDev, FaMedium } from 'react-icons/fa';
 import { RWebShare as WebShare } from 'react-web-share';
 
-import { getFullUrl } from '@lib/siteinfo';
+import { getFullUrl, SOCIAL_MEDIA_URLS } from '@lib/siteinfo';
 import { Button, createStyles, makeStyles, Typography } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) =>
     },
     textStyle: {
       fontStyle: 'italic',
+      lineHeight: '2.5em',
     },
     divider: {
       marginTop: theme.spacing(2),
@@ -27,9 +28,11 @@ const useStyles = makeStyles((theme) =>
     },
     medium: {
       backgroundColor: 'black',
+      marginRight: theme.spacing(1),
     },
     devto: {
       backgroundColor: 'black',
+      marginRight: theme.spacing(1),
     },
     rss: {
       backgroundColor: '#ee802f',
@@ -55,10 +58,10 @@ const Comments: React.FC<Props> = (props) => {
       </WebShare>
       <Divider light className={classes.divider} />
       <Typography variant="body1" color="textPrimary" className={classes.textStyle} component="p">
-        <span>Liked the article ? You can follow the blog at </span>
+        <div>Liked the article ? You can follow the blog at </div>
         <Button
           target="_blank"
-          href="/rss.xml"
+          href={SOCIAL_MEDIA_URLS.medium}
           variant="contained"
           color="primary"
           endIcon={<FaMedium />}
@@ -66,10 +69,9 @@ const Comments: React.FC<Props> = (props) => {
         >
           Medium
         </Button>
-        {'  '}
         <Button
           target="_blank"
-          href="/rss.xml"
+          href={SOCIAL_MEDIA_URLS.devto}
           variant="contained"
           color="primary"
           endIcon={<FaDev />}
@@ -77,7 +79,6 @@ const Comments: React.FC<Props> = (props) => {
         >
           DEV
         </Button>
-        {'  '} or via {'  '}
         <Button
           target="_blank"
           href="/rss.xml"

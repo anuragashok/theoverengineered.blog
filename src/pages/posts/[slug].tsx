@@ -31,10 +31,10 @@ const BlogPostPage: React.FC<Post> = (post: Post) => {
         url={`posts/${post.slug}`}
         image={post.heroImageUrl}
       >
-        <Grid item xs={12} sm={9}>
+        <Grid item xs={12} md={8} lg={9}>
           <BlogPostFull post={post} url={`posts/${post.slug}`} />
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} md={4} lg={3}>
           <div className={classes.sticky}>
             <SocialFollow />
             <About condensed />

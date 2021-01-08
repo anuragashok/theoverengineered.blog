@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaDev, FaMedium, FaRssSquare } from 'react-icons/fa';
 
+import { SOCIAL_MEDIA_URLS } from '@lib/siteinfo';
 import theme from '@lib/theme';
 import { Card, CardActions, CardHeader, createStyles, makeStyles } from '@material-ui/core';
 
@@ -47,10 +48,10 @@ const SocialFollow: React.FC = () => {
       <CardHeader title="Subscribe" className={classes.header} />
       <CardActions>
         <div className={classes.wrapper}>
-          <a target="_blank" rel="noopener noreferrer" href="/rss.xml" title="Medium">
+          <a target="_blank" rel="noopener noreferrer" href={SOCIAL_MEDIA_URLS.medium} title="Medium">
             <FaMedium fontSize="large" className={classes.medium} />
           </a>
-          <a target="_blank" rel="noopener noreferrer" href="/rss.xml" title="Dev.to">
+          <a target="_blank" rel="noopener noreferrer" href={SOCIAL_MEDIA_URLS.devto} title="Dev.to">
             <FaDev fontSize="large" className={classes.devto} />
           </a>
           <a target="_blank" rel="noopener noreferrer" href="/rss.xml" title="RSS Feed">

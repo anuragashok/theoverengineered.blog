@@ -10,7 +10,7 @@ import SocialFollow from '@components/SocialFollow';
 import { getPage } from '@lib/cms';
 import { components, mdxOptions } from '@lib/markdown';
 import { SOCIAL_MEDIA_URLS } from '@lib/siteinfo';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { Divider, Grid, makeStyles, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   sticky: {
@@ -33,16 +33,18 @@ const About: React.FC<Props> = ({ title, body, slug }) => {
   return (
     <>
       <Layout pageTitle={title} pageDescription={title} url={slug}>
-        <Grid item xs={12} sm={8}>
+        <Grid item xs={12} md={8}>
           <Page title={title} body={body} />
           <Typography variant="body1">
-            The blog is also available on my pages at <Link href={SOCIAL_MEDIA_URLS.linkedin}>Medium</Link> and{' '}
+            This blog is also available on my pages at <Link href={SOCIAL_MEDIA_URLS.linkedin}>Medium</Link> and{' '}
             <Link href={SOCIAL_MEDIA_URLS.linkedin}>Dev.to</Link>
           </Typography>
+          <Divider light />
+          <br />
           <SocialFollow />
         </Grid>
 
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} md={4}>
           <div className={classes.sticky}>
             <AboutCard />
           </div>
