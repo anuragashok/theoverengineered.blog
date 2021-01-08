@@ -38,7 +38,7 @@ const About: React.FC<Props> = ({ condensed }) => {
         subheaderTypographyProps={{ variant: 'h5' }}
       />
       <CardContent>
-        <Typography variant={condensed ? 'body2' : 'body1'} color="textPrimary" component="p">
+        <Typography variant={condensed ? 'body2' : 'body1'} color="textPrimary" component="p" align="justify">
           Welcome to my blog!
           <br />
           <br /> I am Anurag Ashok, from Mumbai, India; at present building software for Singapore Airlines @ Singapore.
