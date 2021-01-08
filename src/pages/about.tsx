@@ -36,8 +36,8 @@ const About: React.FC<Props> = ({ title, body, slug }) => {
         <Grid item xs={12} md={8}>
           <Page title={title} body={body} />
           <Typography variant="body1" gutterBottom>
-            This blog is also available on my pages at <Link href={SOCIAL_MEDIA_URLS.linkedin}>Medium</Link> and{' '}
-            <Link href={SOCIAL_MEDIA_URLS.linkedin}>Dev.to</Link>
+            This blog is also available on my pages at <Link href={SOCIAL_MEDIA_URLS.medium}>Medium</Link> and{' '}
+            <Link href={SOCIAL_MEDIA_URLS.devto}>Dev.to</Link>
           </Typography>
           <br />
           <br />

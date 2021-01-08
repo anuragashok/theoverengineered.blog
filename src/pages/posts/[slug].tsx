@@ -10,6 +10,7 @@ import Layout from '@components/Layout';
 import SocialFollow from '@components/SocialFollow';
 import { getPostBySlug, getPosts } from '@lib/cms';
 import { components } from '@lib/markdown';
+import { Hidden } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { Post } from '@models/post';
@@ -36,7 +37,9 @@ const BlogPostPage: React.FC<Post> = (post: Post) => {
         </Grid>
         <Grid item xs={12} md={4} lg={3}>
           <div className={classes.sticky}>
-            <SocialFollow />
+            <Hidden smDown implementation="css">
+              <SocialFollow />
+            </Hidden>
             <About condensed />
           </div>
         </Grid>
