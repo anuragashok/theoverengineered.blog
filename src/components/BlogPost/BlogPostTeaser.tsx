@@ -5,7 +5,7 @@ import React from 'react';
 import { Link } from '@components/Link';
 import Media from '@components/Media';
 import { components } from '@lib/markdown';
-import { CardMedia, createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
+import { createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { Post } from '@models/post';
