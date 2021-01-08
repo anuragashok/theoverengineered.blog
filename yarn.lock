@@ -8733,6 +8733,11 @@ urix@^0.1.0:
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
+url-parameter-append@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/url-parameter-append/-/url-parameter-append-1.0.4.tgz#ded20676035032f44a9d5537cc7d33ca07da860c"
+  integrity sha512-XSJ0XoE+0ktUrGQ78P0zEhtMMKoO1KsOFyamJTzVHnt3M7xADKVHk5/WXF1b0PHRQMkylG/cKNskKaeo5D5nsw==
+
 url@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/url/-/url-0.11.0.tgz#3838e97cfc60521eb73c525a8e55bfdd9e2e28f1"

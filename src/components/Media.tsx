@@ -1,4 +1,5 @@
 type Props = { alt: string; src: string };
+import urlParameterAppend from 'url-parameter-append';
 
 const Media: React.FC<Props> = (props) => {
   const { alt, src } = props;
@@ -14,9 +15,9 @@ const Media: React.FC<Props> = (props) => {
   if (src.includes('ctfasset')) {
     return (
       <picture>
-        <source srcSet={`${src}?fm=webp`} />
-        <source srcSet={src} />
-        <img alt={alt} src={src} width="100%" />;
+        <source srcSet={urlParameterAppend(src, 'fm', 'webp')} />
+        <source srcSet={urlParameterAppend(src)} />
+        <img alt={alt} src={src} width="100%" />
       </picture>
     );
   }

@@ -47,7 +47,9 @@ const BlogPostTeaser: React.FC<Props> = ({ post }) => {
         <div className={classes.wrap}>
           <Grid container spacing={2}>
             <Grid item md={12} lg={4}>
-              <Media src={post.heroImageUrl} alt="" />
+              <Link href={`posts/${slug}`}>
+                <Media src={post.heroImageUrl} alt="Read More" />
+              </Link>
             </Grid>
             <Grid item md={12} lg={8}>
               <Typography variant="body1" align="justify" gutterBottom>

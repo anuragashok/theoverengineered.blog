@@ -35,11 +35,13 @@ const About: React.FC<Props> = ({ title, body, slug }) => {
       <Layout pageTitle={title} pageDescription={title} url={slug}>
         <Grid item xs={12} md={8}>
           <Page title={title} body={body} />
-          <Typography variant="body1">
+          <Typography variant="body1" gutterBottom>
             This blog is also available on my pages at <Link href={SOCIAL_MEDIA_URLS.linkedin}>Medium</Link> and{' '}
             <Link href={SOCIAL_MEDIA_URLS.linkedin}>Dev.to</Link>
           </Typography>
-          <Divider light />
+          <br />
+          <br />
+          <br />
           <br />
           <SocialFollow />
         </Grid>
