@@ -10,7 +10,7 @@ import SocialFollow from '@components/SocialFollow';
 import { getPage } from '@lib/cms';
 import { components, mdxOptions } from '@lib/markdown';
 import { SOCIAL_MEDIA_URLS } from '@lib/siteinfo';
-import { Divider, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, makeStyles, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   sticky: {

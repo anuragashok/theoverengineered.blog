@@ -1,5 +1,6 @@
-type Props = { alt: string; src: string };
 import urlParameterAppend from 'url-parameter-append';
+
+type Props = { alt: string; src: string };
 
 const Media: React.FC<Props> = (props) => {
   const { alt, src } = props;
