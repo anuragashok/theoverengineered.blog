@@ -24,5 +24,5 @@ jobs:
           build_args: CONTENTFUL_SPACE_ID=${{secrets.CONTENTFUL_SPACE_ID}},CONTENTFUL_ACCESS_TOKEN=${{secrets.CONTENTFUL_ACCESS_TOKEN}}
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_TOKEN }}
-          repository: ${{ github.repository }}
+          repository: ${{ github.repository }}/web
           tags: ${{ github.sha }}
