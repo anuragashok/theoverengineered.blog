@@ -21,5 +21,5 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_TOKEN }}
-          repository: ${{ github.repository }}/
+          repository: ${{ github.repository }}
           tags: ${{ github.sha }}
