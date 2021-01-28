@@ -1,4 +1,6 @@
 FROM node:lts
+ARG CONTENTFUL_SPACE_ID
+ARG CONTENTFUL_ACCESS_TOKEN
 RUN mkdir -p /app
 WORKDIR /app
 COPY package*.json /app/
