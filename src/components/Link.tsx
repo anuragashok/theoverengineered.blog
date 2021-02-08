@@ -7,6 +7,14 @@ import { Button, Link as MaterialLink } from '@material-ui/core';
 export const Link: React.FC<React.PropsWithChildren<LinkProps>> = (props) => {
   const { href, children } = props;
   const hrefstr = href.toString();
+
+  if (children.toString().startsWith('Embedded content')) {
+    return (
+      <a href={hrefstr} className="embedly-card" data-card-width="100%" data-card-controls="0">
+        {children}
+      </a>
+    );
+  }
   return isInternalLink(hrefstr) ? (
     <NextLink {...props} passHref>
       <MaterialLink>{children}</MaterialLink>
