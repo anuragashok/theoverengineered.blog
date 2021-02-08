@@ -14,15 +14,6 @@ export default function MyApp(props: AppProps): React.ReactElement {
   const { Component, pageProps } = props;
 
   React.useEffect(() => {
-    const script = document.createElement('script');
-    script.src = '//cdn.embedly.com/widgets/platform.js';
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
