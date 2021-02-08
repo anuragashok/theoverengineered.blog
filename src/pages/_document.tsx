@@ -16,7 +16,6 @@ export default class MyDocument extends Document {
             as="font"
             crossOrigin="anonymous"
           />
-          <script async src="//cdn.embedly.com/widgets/platform.js" charSet="UTF-8" />
         </Head>
         <body>
           <Main />
