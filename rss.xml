@@ -4,9 +4,19 @@
       <link>https://theoverengineered.blog/</link>
       <description>the_Over_Engineered_Blog</description>
       <language>en</language>
-      <lastBuildDate>Sun, 03 Jan 2021 16:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 06 Feb 2021 16:00:00 GMT</lastBuildDate>
       <atom:link href="https://theoverengineered.blog/rss.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://theoverengineered.blog/posts/capture-response-time-in-wiremock-recordings</guid>
+    <title>Capture response time in wiremock recordings</title>
+    <link>https://theoverengineered.blog/posts/capture-response-time-in-wiremock-recordings</link>
+    <description>Wiremock provides a great recording feature to capture live flows and create stubs from them. These stubs can then be used to perform the tests without invoking dependencies. I like Wiremock&apos;s answers to imitate the actual dependency, including the response time of the dependency. Find out how wiremock can do that.</description>
+    <category>wiremock load test java delay</category>
+    <enclosure url="https:" />
+    <pubDate>Sat, 06 Feb 2021 16:00:00 GMT</pubDate>
+  </item>
+
   <item>
     <guid>https://theoverengineered.blog/posts/use-docker-for-local-development</guid>
     <title>Use Docker for local development</title>
