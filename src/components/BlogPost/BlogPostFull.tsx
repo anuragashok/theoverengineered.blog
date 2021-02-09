@@ -2,7 +2,6 @@
 
 import dateformat from 'dateformat';
 import hydrate from 'next-mdx-remote/hydrate';
-import { useEffect } from 'react';
 
 import Comments from '@components/Comments';
 import Title from '@components/Title';
