@@ -17,7 +17,7 @@ type Props = {
 const useStyles = makeStyles((theme) =>
   createStyles({
     teaserpost: {
-      marginBlockStart: theme.spacing(2),
+      marginBlockStart: theme.spacing(1),
       marginBlockEnd: theme.spacing(0),
     },
     wrap: {
@@ -28,7 +28,13 @@ const useStyles = makeStyles((theme) =>
       width: '400px',
       height: '210px',
     },
-    content: {},
+    cardcontent: {
+      padding: theme.spacing(1),
+    },
+    readmore: {
+      marginBlock: theme.spacing(0),
+      marginBlockStart: theme.spacing(1),
+    },
   })
 );
 
@@ -39,7 +45,7 @@ const BlogPostTeaser: React.FC<Props> = ({ post }) => {
   const content = hydrate(description, { components });
   return (
     <Card className={classes.teaserpost} elevation={0}>
-      <CardContent>
+      <CardContent className={classes.cardcontent}>
         <Typography variant="h5" component="h2">
           <Link href={`posts/${slug}`}>{title}</Link>
         </Typography>
@@ -52,12 +58,17 @@ const BlogPostTeaser: React.FC<Props> = ({ post }) => {
               </Link>
             </Grid>
             <Grid item md={12} lg={8}>
-              <Typography variant="body1" align="justify" gutterBottom>
+              <Typography variant="body1" align="justify">
                 {content}
               </Typography>
-              <Typography variant="body2" align="justify">
+              <Typography variant="body2" align="justify" className={classes.readmore}>
                 <Link href={`posts/${slug}`}>Read More</Link>
               </Typography>
+              <style jsx global>{`
+                p {
+                  margin-block: 0;
+                }
+              `}</style>
             </Grid>
           </Grid>
         </div>
