@@ -13,18 +13,23 @@ const mapToPost = (post: Entry<IBlogPostFields>): Post => {
   let { body } = post.fields;
   const { heroImage } = post.fields;
 
+  let newBody = '';
   if (heroImage?.fields?.file.url) {
-    body = `![a](${heroImage.fields.file.url})  
-    *${heroImage.fields.description}*
-
-${body}`;
+    newBody = `![a](${heroImage.fields.file.url})
+    `;
   }
+  if (heroImage.fields.description) {
+    newBody += `*${heroImage.fields.description}*
+    `;
+  }
+  newBody += `${body}`;
+
   return {
     title: post.fields.title,
     slug: post.fields.slug,
     heroImageUrl: post.fields.heroImage?.fields?.file.url || '',
     description: post.fields.description,
-    body,
+    body: newBody,
     author: { name: post.fields.author?.fields.name as string },
     publishDate: post.fields.publishDate,
     tags: post.fields.tags || null,

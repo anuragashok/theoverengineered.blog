@@ -16,21 +16,6 @@ export default class MyDocument extends Document {
             as="font"
             crossOrigin="anonymous"
           />
-          <script
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: ` (function(w, d){
-   var id='embedly-platform', n = 'script';
-   if (!d.getElementById(id)){
-     w.embedly = w.embedly || function() {(w.embedly.q = w.embedly.q || []).push(arguments);};
-     var e = d.createElement(n); e.id = id; e.async=1;
-     e.src = ('https:' === document.location.protocol ? 'https' : 'http') + '://cdn.embedly.com/widgets/platform.js';
-     var s = d.getElementsByTagName(n)[0];
-     s.parentNode.insertBefore(e, s);
-   }
-  })(window, document);`,
-            }}
-          />
         </Head>
         <body>
           <Main />

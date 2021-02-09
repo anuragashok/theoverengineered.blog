@@ -1,6 +1,7 @@
 import { isInternalLink } from 'is-internal-link';
 /* eslint-disable react/jsx-props-no-spreading */
 import NextLink, { LinkProps } from 'next/link';
+import Gist from 'react-gist';
 
 import { Button, Link as MaterialLink } from '@material-ui/core';
 
@@ -9,12 +10,18 @@ export const Link: React.FC<React.PropsWithChildren<LinkProps>> = (props) => {
   const hrefstr = href.toString();
 
   if (children.toString().startsWith('Embedded content')) {
-    return (
-      <a href={hrefstr} className="embedly-card" data-card-width="100%" data-card-controls="0">
-        {children}
-      </a>
-    );
+    const url = new URL(hrefstr);
+    const gistId = url.pathname.split('/')[2];
+    const fileName = url.searchParams.get('file');
+
+    const gistProps = {
+      id: gistId,
+      ...(fileName && { file: fileName }),
+    };
+
+    return <Gist {...gistProps} />;
   }
+
   return isInternalLink(hrefstr) ? (
     <NextLink {...props} passHref>
       <MaterialLink>{children}</MaterialLink>
