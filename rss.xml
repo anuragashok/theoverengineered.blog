@@ -13,7 +13,7 @@
     <link>https://theoverengineered.blog/posts/capture-response-time-in-wiremock-recordings</link>
     <description>Wiremock provides a great recording feature to capture live flows and create stubs from them. These stubs can then be used to perform the tests without invoking dependencies. I like Wiremock&apos;s answers to imitate the actual dependency, including the response time of the dependency. Find out how wiremock can do that.</description>
     <category>wiremock load test java delay</category>
-    <enclosure url="https:" />
+    <enclosure url="https://images.ctfassets.net/lybfa03y94yw/67cLyOldHSrZ3p11WX9ydJ/e223e57b570f4ec54f62f1fec66002b9/Technology___Theory__1_.jpg" />
     <pubDate>Sat, 06 Feb 2021 16:00:00 GMT</pubDate>
   </item>
 
