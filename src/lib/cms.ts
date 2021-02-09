@@ -10,7 +10,7 @@ const client = createClient({
 });
 
 const mapToPost = (post: Entry<IBlogPostFields>): Post => {
-  let { body } = post.fields;
+  const { body } = post.fields;
   const { heroImage } = post.fields;
 
   let newBody = '';
@@ -18,7 +18,7 @@ const mapToPost = (post: Entry<IBlogPostFields>): Post => {
     newBody = `![a](${heroImage.fields.file.url})
     `;
   }
-  if (heroImage.fields.description) {
+  if (heroImage?.fields?.description) {
     newBody += `*${heroImage.fields.description}*
     `;
   }
