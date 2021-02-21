@@ -4,9 +4,19 @@
       <link>https://theoverengineered.blog/</link>
       <description>the_Over_Engineered_Blog</description>
       <language>en</language>
-      <lastBuildDate>Sat, 06 Feb 2021 16:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 27 Feb 2021 16:00:00 GMT</lastBuildDate>
       <atom:link href="https://theoverengineered.blog/rss.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://theoverengineered.blog/posts/publishing-my-first-artifact-to-maven-central-using-github-actions</guid>
+    <title>Publishing my first artifact to maven central using GitHub actions</title>
+    <link>https://theoverengineered.blog/posts/publishing-my-first-artifact-to-maven-central-using-github-actions</link>
+    <description>I wanted to publish the build artifacts of my wiremock extension to maven central. Some changes were needed for the project to be accepted to maven central. This post summarizes these changes and the process of automation using Github Actions.</description>
+    <category>maven</category>
+    <enclosure url="https://images.ctfassets.net/lybfa03y94yw/5aipgcfbeKO4axygu3H3lj/746c2b1c14a92ebd075d24d10986ec24/github_and_maven__1_.jpg" />
+    <pubDate>Sat, 27 Feb 2021 16:00:00 GMT</pubDate>
+  </item>
+
   <item>
     <guid>https://theoverengineered.blog/posts/capture-response-time-in-wiremock-recordings</guid>
     <title>Capture response time in wiremock recordings</title>
