@@ -19,10 +19,9 @@ const mapToPost = (post: Entry<IBlogPostFields>): Post => {
     `;
   }
   if (heroImage?.fields?.description) {
-    newBody += `*${heroImage.fields.description}*
-    `;
+    newBody += `*${heroImage.fields.description}*`;
   }
-  newBody += `${body}`;
+  newBody += `\n\n${body}`;
 
   return {
     title: post.fields.title,
