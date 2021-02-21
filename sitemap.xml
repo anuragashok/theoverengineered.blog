@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
-        <loc>https://theoverengineered.blog/posts/publishing-my-first-artifact-to-maven-central</loc>
-        <changefreq>weekly</changefreq>
-        <priority>1</priority>
-      </url>
-      <url>
         <loc>https://theoverengineered.blog/posts/capture-response-time-in-wiremock-recordings</loc>
         <changefreq>weekly</changefreq>
         <priority>1</priority>
