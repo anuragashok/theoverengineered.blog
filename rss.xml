@@ -4,9 +4,19 @@
       <link>https://theoverengineered.blog/</link>
       <description>the_Over_Engineered_Blog</description>
       <language>en</language>
-      <lastBuildDate>Sat, 06 Feb 2021 16:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 27 Feb 2021 16:00:00 GMT</lastBuildDate>
       <atom:link href="https://theoverengineered.blog/rss.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://theoverengineered.blog/posts/publishing-my-first-artifact-to-maven-central</guid>
+    <title>Publishing my first artifact to maven central</title>
+    <link>https://theoverengineered.blog/posts/publishing-my-first-artifact-to-maven-central</link>
+    <description>TEST</description>
+    <category>maven</category>
+    <enclosure url="https://images.ctfassets.net/lybfa03y94yw/5aipgcfbeKO4axygu3H3lj/c5c42921a97f6368e71d1d18ea8f8fc1/maven.svg" />
+    <pubDate>Sat, 27 Feb 2021 16:00:00 GMT</pubDate>
+  </item>
+
   <item>
     <guid>https://theoverengineered.blog/posts/capture-response-time-in-wiremock-recordings</guid>
     <title>Capture response time in wiremock recordings</title>
