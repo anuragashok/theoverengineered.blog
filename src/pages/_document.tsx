@@ -16,6 +16,7 @@ export default class MyDocument extends Document {
             as="font"
             crossOrigin="anonymous"
           />
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
         </Head>
         <body>
           <Main />
