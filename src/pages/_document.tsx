@@ -21,6 +21,8 @@ export default class MyDocument extends Document {
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
           />
+          <script type="text/javascript"> var infolinks_pid = 3316645; var infolinks_wsid = 0; </script>
+          <script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js" />
         </Head>
         <body>
           <Main />
