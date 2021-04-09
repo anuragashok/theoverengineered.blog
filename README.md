@@ -4,7 +4,7 @@
 
 View the blog @ [theoverengineered.blog](https://theoverengineered.blog)
 
-### Latest Posts from thr blog
+### Latest Posts from the blog
 
 <!-- feed start -->
 - Feb 27 - [Publishing my first artifact to maven central using GitHub actions](https://theoverengineered.blog/posts/publishing-my-first-artifact-to-maven-central-using-github-actions)
