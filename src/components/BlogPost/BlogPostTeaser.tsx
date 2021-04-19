@@ -56,8 +56,8 @@ const BlogPostTeaser: React.FC<Props> = ({ post }) => {
             <Grid item md={12} lg={4}>
               <Link href={`posts/${slug}`}>
                 <picture>
-                  <source srcSet={urlParameterAppend(post.heroImageUrl, 'fm', 'webp', 'w', '290px')} />
-                  <source srcSet={urlParameterAppend(post.heroImageUrl)} />
+                  <source srcSet={urlParameterAppend(post.heroImageUrl, 'fm', 'webp', 'w', '290')} />
+                  <source srcSet={urlParameterAppend(post.heroImageUrl, 'w', '290')} />
                   <img alt="Read More" src={post.heroImageUrl} width="290" height="153" />
                 </picture>
               </Link>
