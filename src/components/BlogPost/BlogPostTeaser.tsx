@@ -1,6 +1,7 @@
 import dateformat from 'dateformat';
 import hydrate from 'next-mdx-remote/hydrate';
 import React from 'react';
+import urlParameterAppend from 'url-parameter-append';
 
 import { Link } from '@components/Link';
 import Media from '@components/Media';
@@ -54,6 +55,11 @@ const BlogPostTeaser: React.FC<Props> = ({ post }) => {
           <Grid container spacing={2}>
             <Grid item md={12} lg={4}>
               <Link href={`posts/${slug}`}>
+                <picture>
+                  <source srcSet={urlParameterAppend(post.heroImageUrl, 'fm', 'webp')} />
+                  <source srcSet={urlParameterAppend(post.heroImageUrl)} />
+                  <img alt="Read More" src={post.heroImageUrl} width="290" height="153" />
+                </picture>
                 <Media src={post.heroImageUrl} alt="Read More" />
               </Link>
             </Grid>
