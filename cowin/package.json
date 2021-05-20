@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "chromedriver": "^90.0.0",
+    "webdriverio": "^7.5.7"
+  }
+}
