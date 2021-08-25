@@ -1,7 +1,0 @@
-version: '3.7'
-
-services:
-  web: 
-    image: docker.pkg.github.com/anuragashok/theoverengineered.blog/web:c290e46bff882d31c1ae14ca803985fd28abde3c
-    ports: 
-      - "80:80"
