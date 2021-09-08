@@ -3,6 +3,8 @@ import renderToString from 'next-mdx-remote/render-to-string';
 import DefaultErrorPage from 'next/error';
 import Head from 'next/head';
 import React from 'react';
+import ReactMarkdown from 'react-markdown'
+import ReactDOMServer from 'react-dom/server';
 
 import asyncForEach from '@lib/asyncForEach';
 import { getAllContent, getPosts } from '@lib/cms';
@@ -27,7 +29,7 @@ const Dummy: React.FC = () => (
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await getPosts();
   await asyncForEach(posts, async (p) => {
-    const { renderedOutput } = await renderToString(p.body, { components, mdxOptions });
+    const renderedOutput = ReactDOMServer.renderToString(<ReactMarkdown>{p.body}</ReactMarkdown>)
     // eslint-disable-next-line no-param-reassign
     p.body = renderedOutput;
   });

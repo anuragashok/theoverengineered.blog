@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next';
-import renderToString from 'next-mdx-remote/render-to-string';
 import React from 'react';
 
 import AboutCard from '@components/About';
@@ -8,7 +7,6 @@ import { Link } from '@components/Link';
 import Page from '@components/Page';
 import SocialFollow from '@components/SocialFollow';
 import { getPage } from '@lib/cms';
-import { components, mdxOptions } from '@lib/markdown';
 import { SOCIAL_MEDIA_URLS } from '@lib/siteinfo';
 import { Grid, makeStyles, Typography } from '@material-ui/core';
 
@@ -58,7 +56,7 @@ const About: React.FC<Props> = ({ title, body, slug }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const page = await getPage('4OFtfryXjAW9lKo3FTuyWG');
-  page.body = await renderToString(page.body, { components, mdxOptions });
+  
   return {
     props: {
       ...page,

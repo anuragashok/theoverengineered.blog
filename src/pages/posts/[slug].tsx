@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import renderToString from 'next-mdx-remote/render-to-string';
 import React from 'react';
 import highlightPlugin from 'remark-prism';
-
+import ReactDOMServer from 'react-dom/server';
 import About from '@components/About';
 import { BlogPostFull } from '@components/BlogPost';
 import Layout from '@components/Layout';
@@ -57,7 +57,8 @@ const mapParams = ({ slug }) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params;
   const post = await getPostBySlug(slug as string);
-  post.body = await renderToString(post.body, { components, mdxOptions: { remarkPlugins: [highlightPlugin] } });
+  post.body = ReactDOMServer.renderToString(<ReactMarkdown source="# Hello world" />)
+  
 
   return { props: post };
 };
