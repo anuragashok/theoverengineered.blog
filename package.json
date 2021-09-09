@@ -6,7 +6,6 @@
     "build": "next build && next export",
     "start": "next start",
     "type-check": "tsc",
-    "format": "",
     "codecheck": "eslint --quiet --fix src/**/*.{ts,tsx} && prettier --write src/**/*.{ts,tsx}",
     "contentful-typescript-codegen": "contentful-typescript-codegen --output src/models/contentful.d.ts",
     "analyze": "cross-env ANALYZE=true yarn next build"
