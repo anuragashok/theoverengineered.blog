@@ -1,7 +1,7 @@
 import urlParameterAppend from 'url-parameter-append';
 import Image from 'next/image';
 
-type Props = { alt: string; src: string; width?: string; height?: string };
+type Props = { alt: string; src: string;  };
 
 const Media: React.FC<Props> = (props) => {
   const { alt, src } = props;
