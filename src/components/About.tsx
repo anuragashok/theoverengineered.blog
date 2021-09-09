@@ -29,7 +29,7 @@ const About: React.FC<Props> = ({ condensed }) => {
       <CardHeader
         avatar={
           <Avatar aria-label="Anurag Ashok (Author)" className={classes.avatar}>
-            <Media src="/anurag.jpg" alt="Anurag Ashok (Author)" />
+            <Media src="/anurag.jpg" alt="Anurag Ashok (Author)" width="100px" height="100px" />
           </Avatar>
         }
         title="Author"
