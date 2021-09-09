@@ -40,7 +40,6 @@ const ContactForm: React.FC = () => {
     });
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     // TODO
     return true;

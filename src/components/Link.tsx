@@ -9,6 +9,8 @@ export const Link: React.FC<React.PropsWithChildren<LinkProps>> = (props) => {
   const { href, children } = props;
   const hrefstr = href.toString();
 
+  
+
   if (children.toString().startsWith('Embedded content')) {
     const url = new URL(hrefstr);
     const gistId = url.pathname.split('/')[2];
@@ -21,6 +23,10 @@ export const Link: React.FC<React.PropsWithChildren<LinkProps>> = (props) => {
 
     return <Gist {...gistProps} />;
   }
+
+  if (hrefstr.includes("gist.github.com")){
+    return <></>
+  } 
 
   return isInternalLink(hrefstr) ? (
     <NextLink {...props} passHref>

@@ -1,8 +1,5 @@
 /* eslint-disable react/no-danger */
-import hydrate from 'next-mdx-remote/hydrate';
-
 import Title from '@components/Title';
-import { components } from '@lib/markdown';
 import { Typography } from '@material-ui/core';
 import SvgIcon from '@material-ui/core/SvgIcon/SvgIcon';
 import ReactMarkdown from 'react-markdown'

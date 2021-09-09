@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next';
-import renderToString from 'next-mdx-remote/render-to-string';
 import React from 'react';
 
 import About from '@components/About';
@@ -8,7 +7,6 @@ import Layout from '@components/Layout';
 import SocialFollow from '@components/SocialFollow';
 import asyncForEach from '@lib/asyncForEach';
 import { getPosts } from '@lib/cms';
-import { components, mdxOptions } from '@lib/markdown';
 import { Divider, Grid, makeStyles } from '@material-ui/core';
 import { Post } from '@models/post';
 
@@ -30,7 +28,7 @@ const Home: React.FC<Props> = ({ posts }) => {
     <Layout pageTitle="" pageDescription="Home" url="/">
       <Grid item xs={12} md={8} lg={9}>
         {posts.map((post, i) => (
-          <Grid item xs={12} sm={12}>
+          <Grid item xs={12} sm={12} key={i}>
             <BlogPostTeaser post={post} />
             {i + 1 !== postCount && <Divider light />}
           </Grid>
@@ -48,11 +46,6 @@ const Home: React.FC<Props> = ({ posts }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await getPosts();
-  await asyncForEach(posts, async (p) => {
-    // eslint-disable-next-line no-param-reassign
-    p.description = await renderToString(p.description, { components, mdxOptions });
-  });
-
   return {
     props: {
       posts,
